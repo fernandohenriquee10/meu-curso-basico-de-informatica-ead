@@ -8,34 +8,38 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* === Variáveis de Cor (Tema Claro - Padrão Totalmente Branco) === */
+        /* === Variáveis de Cor (Tema Claro - Padrão) === */
         :root {
           --cor-fundo: #FFFFFF;
           --cor-fundo-sutil: #f9fafb;
-          --cor-fundo-header: rgba(255, 255, 255, 0.95);
-          --cor-texto-primario: #000000;
-          --cor-texto-secundario: #333333;
-          --cor-borda: #cccccc;
+          --cor-fundo-header: rgba(255, 255, 255, 0.9);
+          --cor-texto-primario: #0A0A0A;
+          --cor-texto-secundario: #525252;
+          --cor-borda: #e5e7eb;
           --cor-primaria: #00008B;
           --cor-primaria-hover: #00005a;
           --cor-icone: #00008B;
           --cor-sucesso: #22c55e;
           --cor-erro: #ef4444;
           --cor-aviso: #f59e0b;
-          --sombra-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+          --sombra-card: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.07);
         }
 
-        /* === Tema Escuro (Totalmente Preto) === */
+        /* === Tema Escuro === */
         .dark-mode {
-          --cor-fundo: #000000;
-          --cor-fundo-sutil: #111111;
-          --cor-fundo-header: rgba(0, 0, 0, 0.95);
+          --cor-fundo: #0A0A0A;
+          --cor-fundo-sutil: #121212;
+          --cor-fundo-header: rgba(10, 10, 10, 0.9);
           --cor-texto-primario: #FFFFFF;
-          --cor-texto-secundario: #cccccc;
-          --cor-borda: #444444;
+          --cor-texto-secundario: #a1a1a1;
+          --cor-borda: #333333;
           --cor-primaria: #0d6efd;
           --cor-primaria-hover: #0b5ed7;
           --cor-icone: #0d6efd;
+          --cor-sucesso: #22c55e;
+          --cor-erro: #ef4444;
+          --cor-aviso: #d97706;
+          --sombra-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
         }
 
         /* === Reset Básico e Estilo Global === */
@@ -57,39 +61,44 @@
         header .container { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 1.125rem; font-weight: 600; color: var(--cor-texto-primario); text-decoration: none; margin-right: 0.5rem; }
         .nav-direita { display: flex; align-items: center; gap: 0.75rem; }
-
-        /* Botões de Tema Absolutos */
-        .btn-cor-branca { width: 24px; height: 24px; border-radius: 50%; background-color: #FFFFFF; border: 2px solid #000000; cursor: pointer; }
-        .btn-cor-preta { width: 24px; height: 24px; border-radius: 50%; background-color: #000000; border: 2px solid #FFFFFF; cursor: pointer; }
-
-        .botao-zoom { background: transparent; border: none; cursor: pointer; color: var(--cor-texto-secundario); padding: 0.25rem; display: flex; align-items: center; justify-content: center; }
-        .botao-zoom:hover { color: var(--cor-texto-primario); }
-        .botao-zoom svg { width: 1.25rem; height: 1.25rem; }
+        .botao-tema, .botao-zoom { background: transparent; border: none; cursor: pointer; color: var(--cor-texto-secundario); padding: 0.25rem; display: flex; align-items: center; justify-content: center; }
+        .botao-tema:hover, .botao-zoom:hover { color: var(--cor-texto-primario); }
+        .botao-tema svg, .botao-zoom svg { width: 1.25rem; height: 1.25rem; }
+        .sun-icon { display: none; }
+        .dark-mode .sun-icon { display: block; }
+        .dark-mode .moon-icon { display: none; }
 
         .botao { padding: 0.625rem 1rem; border-radius: 8px; font-weight: 500; text-decoration: none; cursor: pointer; border: none; font-size: 0.875rem; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; }
         .botao-primario { background-color: var(--cor-primaria); color: white; transition: background-color 0.2s; }
         .botao-primario:hover { background-color: var(--cor-primaria-hover); }
         .botao-aviso { background-color: var(--cor-aviso); color: white; width: 100%; margin-top: 0.5rem; }
+        .botao-aviso:hover { filter: brightness(0.9); }
         .botao-perigo { background-color: var(--cor-erro); color: white; width: 100%; margin-top: 0.5rem; }
+        .botao-perigo:hover { background-color: #c13e3e; }
 
-        /* === Módulos e Cards === */
+        /* === Hero === */
         .hero { padding: 6rem 0; text-align: center; }
         .hero h1 { font-size: 3rem; letter-spacing: -0.025em; }
         .hero .subtitulo { font-size: 1.125rem; max-width: 600px; margin: 1.5rem auto 2.5rem; }
 
+        /* === Módulos (Landing) === */
         .modulos { padding: 4rem 0; background-color: var(--cor-fundo-sutil); border-top: 1px solid var(--cor-borda); border-bottom: 1px solid var(--cor-borda); }
         .modulos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
         .card-modulo { background-color: var(--cor-fundo); border: 1px solid var(--cor-borda); border-radius: 12px; padding: 2rem; box-shadow: var(--sombra-card); }
         .card-modulo svg { width: 2rem; height: 2rem; color: var(--cor-icone); margin-bottom: 1rem; }
         .card-modulo h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
 
+        /* === Vantagens === */
         .vantagens { padding: 6rem 0; }
         .vantagens-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
         .vantagem-item { display: flex; align-items: center; gap: 0.75rem; }
         .vantagem-item svg { width: 1.5rem; height: 1.5rem; color: var(--cor-icone); flex-shrink: 0; }
 
+        /* === Contato === */
         .contato { padding: 4rem 0; background-color: var(--cor-fundo-sutil); border-top: 1px solid var(--cor-borda); }
-        .contato-card { background-color: var(--cor-fundo); border: 1px solid var(--cor-borda); border-radius: 12px; padding: 2.5rem; box-shadow: var(--sombra-card); max-width: 600px; margin: 0 auto;}
+        .contato .container { max-width: 600px; }
+        .contato-card { background-color: var(--cor-fundo); border: 1px solid var(--cor-borda); border-radius: 12px; padding: 2.5rem; box-shadow: var(--sombra-card); }
+        .contato-card h2 { text-align: left; margin-bottom: 1rem; }
         .contato-lista { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
         .contato-item { display: flex; align-items: center; gap: 1rem; }
         .contato-item svg { width: 1.25rem; height: 1.25rem; color: var(--cor-icone); flex-shrink: 0; }
@@ -110,6 +119,8 @@
         .social-login { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem; }
         .social-botao { display: flex; align-items: center; justify-content: center; gap: 0.75rem; width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--cor-borda); background-color: var(--cor-fundo-sutil); color: var(--cor-texto-primario); font-weight: 500; cursor: pointer; transition: background-color 0.2s; }
         .dark-mode .social-botao { background-color: var(--cor-fundo); }
+        .social-botao:hover { background-color: var(--cor-fundo); }
+        .dark-mode .social-botao:hover { background-color: #1a1a1a; }
         .social-botao svg { width: 1.25rem; height: 1.25rem; }
         .separador { display: flex; align-items: center; text-align: center; color: var(--cor-texto-secundario); margin: 1.5rem 0; font-size: 0.75rem; font-weight: 500; }
         .separador::before, .separador::after { content: ''; flex: 1; border-bottom: 1px solid var(--cor-borda); }
@@ -122,9 +133,10 @@
         #dashboard-page { background-color: var(--cor-fundo-sutil); min-height: 100vh; }
         .dark-mode #dashboard-page { background-color: var(--cor-fundo); }
         .dashboard-header { background-color: var(--cor-fundo); border-bottom: 1px solid var(--cor-borda); padding: 1rem 0; }
+        .dashboard-header .container { display: flex; justify-content: space-between; align-items: center; }
         .user-info { display: flex; align-items: center; gap: 1rem; cursor: pointer; text-decoration: none; }
-        .user-avatar { width: 2rem; height: 2rem; border-radius: 50%; background-color: var(--cor-fundo-sutil); border: 1px solid var(--cor-borda); display: flex; align-items: center; justify-content: center; font-weight: 600; color: var(--cor-texto-primario); object-fit: cover; overflow: hidden; }
-        .user-avatar img { width: 100%; height: 100%; display: none; object-fit: cover; }
+        .user-avatar { width: 2.5rem; height: 2.5rem; border-radius: 50%; background-color: var(--cor-fundo-sutil); border: 1px solid var(--cor-borda); display: flex; align-items: center; justify-content: center; font-weight: 600; color: var(--cor-texto-primario); object-fit: cover; overflow: hidden; }
+        .user-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none; }
         .user-avatar span { display: block; }
         .botao-logout { background-color: var(--cor-fundo-sutil); color: var(--cor-texto-secundario); border: 1px solid var(--cor-borda); }
         .dark-mode .botao-logout { background-color: var(--cor-borda); color: var(--cor-texto-primario); }
@@ -133,11 +145,14 @@
         .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
         .stat-card { background-color: var(--cor-fundo); border: 1px solid var(--cor-borda); border-radius: 12px; padding: 1.5rem; box-shadow: var(--sombra-card); display: flex; justify-content: space-between; align-items: start; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
         .stat-card:hover { transform: translateY(-4px); }
+        .stat-card svg { width: 1.5rem; height: 1.5rem; color: var(--cor-texto-secundario); }
         .progress-bar { width: 100%; height: 0.5rem; background-color: var(--cor-fundo-sutil); border-radius: 4px; overflow: hidden; margin-top: 0.5rem; }
         .progress-bar div { width: 0%; height: 100%; background-color: var(--cor-primaria); }
         .dashboard-modulos-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
         .dashboard-modulos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
         .card-modulo-curso { background-color: var(--cor-fundo); border: 1px solid var(--cor-borda); border-radius: 12px; padding: 2rem; box-shadow: var(--sombra-card); display: flex; flex-direction: column; }
+        .card-modulo-curso h3 { display: flex; align-items: center; gap: 0.75rem; font-size: 1.25rem; margin-bottom: 0.5rem; }
+        .card-modulo-curso p { flex-grow: 1; margin-bottom: 1.5rem; }
 
         /* === Página de Módulo === */
         #module-page { background-color: var(--cor-fundo-sutil); min-height: 100vh; }
@@ -160,7 +175,7 @@
         .dark-mode .lesson-content code { background-color: var(--cor-borda); }
         .module-navigation { display: flex; justify-content: space-between; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--cor-borda); }
 
-        /* === Settings, Certificate, Quiz, Forum === */
+        /* === Settings, Certificado, Quiz, Forum === */
         #settings-page, #certificate-form-page, #quiz-page, #forum-page { background-color: var(--cor-fundo-sutil); min-height: 100vh; }
         .dark-mode #settings-page, .dark-mode #certificate-form-page, .dark-mode #quiz-page, .dark-mode #forum-page { background-color: var(--cor-fundo); }
         .page-card { width: 100%; max-width: 700px; margin: 0 auto; background-color: var(--cor-fundo); border: 1px solid var(--cor-borda); border-radius: 12px; padding: 2.5rem; box-shadow: var(--sombra-card); }
@@ -191,6 +206,8 @@
 </head>
 <body>
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></symbol>
+    <symbol id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></symbol>
     <symbol id="icon-zoom-in" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line><line x1="21" y1="21" x2="16.65" y2="16.65"></line></symbol>
     <symbol id="icon-zoom-out" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="8" y1="11" x2="14" y2="11"></line><line x1="21" y1="21" x2="16.65" y2="16.65"></line></symbol>
     <symbol id="icon-arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></symbol>
@@ -219,8 +236,10 @@
             <div class="nav-direita">
                 <button class="botao-zoom" onclick="zoomOut()" title="Diminuir zoom"><svg><use href="#icon-zoom-out"></use></svg></button>
                 <button class="botao-zoom" onclick="zoomIn()" title="Aumentar zoom"><svg><use href="#icon-zoom-in"></use></svg></button>
-                <button class="btn-cor-branca" onclick="setTheme('light')" title="Fundo Branco"></button>
-                <button class="btn-cor-preta" onclick="setTheme('dark')" title="Fundo Preto"></button>
+                <button class="botao-tema" title="Mudar tema">
+                    <svg class="moon-icon"><use href="#icon-moon"></use></svg>
+                    <svg class="sun-icon"><use href="#icon-sun"></use></svg>
+                </button>
                 <a href="#" class="botao botao-primario" onclick="showLogin(event)">Entrar</a>
             </div>
         </div>
@@ -228,10 +247,10 @@
     <main>
         <section class="hero">
             <div class="container">
-                <h1>Aprenda Informática, Android, iOS e PIX</h1>
+                <h1>Aprenda Informática, Android e iOS</h1>
                 <p class="subtitulo">
                     Curso completo de Educação a Distância para você aprender a usar computadores,
-                    celulares Android e iOS, fazer pagamentos PIX com segurança e ainda dar os primeiros passos em desenvolvimento mobile.
+                    celulares Android e iOS, garantindo segurança digital e dando os primeiros passos no desenvolvimento mobile.
                 </p>
                 <a href="#" class="botao botao-primario" style="padding: 0.75rem 1.5rem; font-size: 1rem;" onclick="showSignup(event)">
                     Começar Agora
@@ -246,32 +265,32 @@
                     <div class="card-modulo">
                         <svg><use href="#icon-laptop"></use></svg>
                         <h3>Introdução à Informática</h3>
-                        <p>Conceitos básicos, história e importância da tecnologia, ligando e entrando no computador passo a passo.</p>
+                        <p>10 Aulas abrangentes. Conceitos básicos, história e uso inicial da máquina.</p>
                     </div>
                     <div class="card-modulo">
                         <svg><use href="#icon-hardware"></use></svg>
                         <h3>Hardware e Software</h3>
-                        <p>Componentes físicos, tipos de memória, armazenamento e como o software controla tudo isso.</p>
+                        <p>10 Aulas técnicas. A anatomia do computador e a lógica dos programas.</p>
                     </div>
                     <div class="card-modulo">
                         <svg><use href="#icon-desktop"></use></svg>
                         <h3>Sistemas Operacionais</h3>
-                        <p>Windows, macOS e Linux: janelas, pastas, arquivos, atalhos e organização.</p>
+                        <p>10 Aulas fundamentais. Domínio total sobre Windows, macOS e Linux.</p>
                     </div>
                     <div class="card-modulo">
                         <svg><use href="#icon-wifi"></use></svg>
                         <h3>Internet e Redes</h3>
-                        <p>Navegação, e-mail, redes sociais, nuvem, segurança online e boas práticas.</p>
+                        <p>10 Aulas. Segurança, nuvem e conectividade disciplinada.</p>
                     </div>
                     <div class="card-modulo">
                         <svg><use href="#icon-document"></use></svg>
                         <h3>Aplicativos de Escritório</h3>
-                        <p>Word, Excel e PowerPoint na prática: documentos, cálculos e apresentações.</p>
+                        <p>10 Aulas práticas. Criação textual, lógica em planilhas e apresentações visuais.</p>
                     </div>
                     <div class="card-modulo">
                         <svg><use href="#icon-smartphone"></use></svg>
                         <h3>Desenvolvimento Mobile</h3>
-                        <p>Uso de Android e iOS do básico ao avançado, e introdução a criação de aplicativos.</p>
+                        <p>10 Aulas para Android e 10 para iOS, preparando sua base de desenvolvimento.</p>
                     </div>
                 </div>
             </div>
@@ -284,7 +303,7 @@
                     <div class="vantagem-item"><svg><use href="#icon-check"></use></svg><span>Estude no seu próprio ritmo e horário</span></div>
                     <div class="vantagem-item"><svg><use href="#icon-check"></use></svg><span>Acesso ao conteúdo de qualquer lugar</span></div>
                     <div class="vantagem-item"><svg><use href="#icon-check"></use></svg><span>Interação no Fórum de Discussões</span></div>
-                    <div class="vantagem-item"><svg><use href="#icon-check"></use></svg><span>Conteúdo do básico ao avançado</span></div>
+                    <div class="vantagem-item"><svg><use href="#icon-check"></use></svg><span>Conteúdo rigoroso do básico ao avançado</span></div>
                     <div class="vantagem-item"><svg><use href="#icon-check"></use></svg><span>Quizzes interativos e práticos</span></div>
                     <div class="vantagem-item"><svg><use href="#icon-check"></use></svg><span>Certificado ao concluir o curso</span></div>
                 </div>
@@ -319,8 +338,10 @@
             <div class="nav-direita">
                 <button class="botao-zoom" onclick="zoomOut()" title="Diminuir zoom"><svg><use href="#icon-zoom-out"></use></svg></button>
                 <button class="botao-zoom" onclick="zoomIn()" title="Aumentar zoom"><svg><use href="#icon-zoom-in"></use></svg></button>
-                <button class="btn-cor-branca" onclick="setTheme('light')" title="Fundo Branco"></button>
-                <button class="btn-cor-preta" onclick="setTheme('dark')" title="Fundo Preto"></button>
+                <button class="botao-tema" title="Mudar tema">
+                    <svg class="moon-icon"><use href="#icon-moon"></use></svg>
+                    <svg class="sun-icon"><use href="#icon-sun"></use></svg>
+                </button>
             </div>
         </div>
     </header>
@@ -369,28 +390,30 @@
             <div class="nav-direita">
                 <button class="botao-zoom" onclick="zoomOut()" title="Diminuir zoom"><svg><use href="#icon-zoom-out"></use></svg></button>
                 <button class="botao-zoom" onclick="zoomIn()" title="Aumentar zoom"><svg><use href="#icon-zoom-in"></use></svg></button>
-                <button class="btn-cor-branca" onclick="setTheme('light')" title="Fundo Branco"></button>
-                <button class="btn-cor-preta" onclick="setTheme('dark')" title="Fundo Preto"></button>
+                <button class="botao-tema" title="Mudar tema">
+                    <svg class="moon-icon"><use href="#icon-moon"></use></svg>
+                    <svg class="sun-icon"><use href="#icon-sun"></use></svg>
+                </button>
             </div>
         </div>
     </header>
     <main class="signup-main">
         <div class="signup-card">
             <h1>Criar sua conta</h1>
-
             <div class="social-login">
-                <button class="social-botao" onclick="handleSocialAuth(event, 'google', true)">
+                <button class="social-botao" onclick="handleSocialAuth(event, 'google')">
                     <svg><use href="#icon-google"></use></svg> Continuar com Google
                 </button>
-                <button class="social-botao" onclick="handleSocialAuth(event, 'apple', true)">
+                <button class="social-botao" onclick="handleSocialAuth(event, 'apple')">
                     <svg><use href="#icon-apple"></use></svg> Continuar com Apple
                 </button>
-                <button class="social-botao" onclick="handleSocialAuth(event, 'facebook', true)">
+                <button class="social-botao" onclick="handleSocialAuth(event, 'facebook')">
                     <svg><use href="#icon-facebook"></use></svg> Continuar com Facebook
                 </button>
             </div>
 
             <div class="separador">OU</div>
+
             <form onsubmit="handleSignup(event)">
                 <div class="form-grupo">
                     <label for="email-signup">Email</label>
@@ -419,8 +442,10 @@
             <div class="nav-direita">
                 <button class="botao-zoom" onclick="zoomOut()" title="Diminuir zoom"><svg><use href="#icon-zoom-out"></use></svg></button>
                 <button class="botao-zoom" onclick="zoomIn()" title="Aumentar zoom"><svg><use href="#icon-zoom-in"></use></svg></button>
-                <button class="btn-cor-branca" onclick="setTheme('light')" title="Fundo Branco"></button>
-                <button class="btn-cor-preta" onclick="setTheme('dark')" title="Fundo Preto"></button>
+                <button class="botao-tema" title="Mudar tema">
+                    <svg class="moon-icon"><use href="#icon-moon"></use></svg>
+                    <svg class="sun-icon"><use href="#icon-sun"></use></svg>
+                </button>
                 <a href="#" class="user-info" onclick="showSettingsPage(event)">
                     <div class="user-avatar">
                         <img id="avatar-img-dash" src="" alt="Avatar">
@@ -436,7 +461,7 @@
         <div class="container">
             <div class="welcome-banner">
                 <h1>Bem-vindo de volta!</h1>
-                <p>Continue sua jornada de aprendizado.</p>
+                <p>Mantenha a disciplina e continue sua jornada de aprendizado de forma ordeira.</p>
             </div>
             <div class="stats-grid">
                 <div class="stat-card">
@@ -470,69 +495,69 @@
 
             <div class="dashboard-modulos-header">
                 <h2>Módulos do Curso</h2>
-                <a href="#" class="botao" style="color: var(--cor-primaria);" onclick="showForumPage(event)">Ver Fórum</a>
+                <a href="#" class="botao" style="color: var(--cor-primaria);" onclick="showForumPage(event)">Ver Fórum de Discussões</a>
             </div>
 
             <div class="dashboard-modulos-grid">
                 <div class="card-modulo-curso">
                     <h3><svg><use href="#icon-book-open"></use></svg>Introdução à Informática</h3>
-                    <p>Conceitos básicos, história da informática e importância da tecnologia na sociedade moderna.</p>
+                    <p>10 Aulas densas. Conceitos básicos, história e importância da tecnologia moderna.</p>
                     <a href="#" class="botao botao-primario" data-module-key="informatica" onclick="showModulePage(event)">Acessar Módulo
                         <svg width="20" height="20"><use href="#icon-arrow-right"></use></svg></a>
                 </div>
 
                 <div class="card-modulo-curso">
                     <h3><svg><use href="#icon-book-open"></use></svg>Hardware e Software</h3>
-                    <p>Componentes físicos (hardware) e programas que o fazem funcionar (software).</p>
+                    <p>10 Aulas teóricas. Componentes físicos e programas que o fazem funcionar.</p>
                     <a href="#" class="botao botao-primario" data-module-key="hardware" onclick="showModulePage(event)">Acessar Módulo
                         <svg width="20" height="20"><use href="#icon-arrow-right"></use></svg></a>
                 </div>
 
                 <div class="card-modulo-curso">
                     <h3><svg><use href="#icon-book-open"></use></svg>Sistemas Operacionais</h3>
-                    <p>Funcionamento e uso de sistemas como Windows, macOS e Linux.</p>
+                    <p>10 Aulas sistêmicas. Funcionamento de Windows, macOS e Linux.</p>
                     <a href="#" class="botao botao-primario" data-module-key="os" onclick="showModulePage(event)">Acessar Módulo
                         <svg width="20" height="20"><use href="#icon-arrow-right"></use></svg></a>
                 </div>
 
                 <div class="card-modulo-curso">
                     <h3><svg><use href="#icon-book-open"></use></svg>Internet e Redes</h3>
-                    <p>Navegação na web, uso de navegadores, e-mail, redes sociais e segurança online.</p>
+                    <p>10 Aulas em conectividade. Uso de navegadores, segurança online e boas práticas.</p>
                     <a href="#" class="botao botao-primario" data-module-key="redes" onclick="showModulePage(event)">Acessar Módulo
                         <svg width="20" height="20"><use href="#icon-arrow-right"></use></svg></a>
                 </div>
 
                 <div class="card-modulo-curso">
                     <h3><svg><use href="#icon-book-open"></use></svg>Aplicativos de Escritório</h3>
-                    <p>Uso de programas como Microsoft Word, Excel e PowerPoint para tarefas do dia a dia.</p>
+                    <p>10 Aulas práticas. Microsoft Word, Excel e PowerPoint.</p>
                     <a href="#" class="botao botao-primario" data-module-key="escritorio" onclick="showModulePage(event)">Acessar Módulo
                         <svg width="20" height="20"><use href="#icon-arrow-right"></use></svg></a>
                 </div>
 
                 <div class="card-modulo-curso">
                     <h3><svg><use href="#icon-book-open"></use></svg>Desenvolvimento Android</h3>
-                    <p>Aprenda a usar o Android, instalar apps e dar os primeiros passos no desenvolvimento.</p>
+                    <p>10 Aulas exclusivas. Aprenda a usar o Android e base para apps.</p>
                     <a href="#" class="botao botao-primario" data-module-key="android" onclick="showModulePage(event)">Acessar Módulo
                         <svg width="20" height="20"><use href="#icon-arrow-right"></use></svg></a>
                 </div>
 
                 <div class="card-modulo-curso">
                     <h3><svg><use href="#icon-book-open"></use></svg>Desenvolvimento iOS</h3>
-                    <p>Aprenda a usar o iPhone com segurança e conhecer a base da criação de apps.</p>
+                    <p>10 Aulas fechadas. Uso rigoroso do ecossistema Apple.</p>
                     <a href="#" class="botao botao-primario" data-module-key="ios" onclick="showModulePage(event)">Acessar Módulo
                         <svg width="20" height="20"><use href="#icon-arrow-right"></use></svg></a>
                 </div>
 
                 <div class="card-modulo-curso">
-                    <h3><svg><use href="#icon-book-open"></use></svg>Revisão Android & iOS</h3>
-                    <p>Revisão prática e teórica de uso dos sistemas Android e iOS do básico ao avançado.</p>
+                    <h3><svg><use href="#icon-book-open"></use></svg>Revisão Mobile</h3>
+                    <p>10 Aulas de revisão. Uso dos sistemas Android e iOS de forma disciplinada.</p>
                     <a href="#" class="botao botao-primario" data-module-key="mobile_revisao" onclick="showModulePage(event)">Acessar Módulo
                         <svg width="20" height="20"><use href="#icon-arrow-right"></use></svg></a>
                 </div>
 
                 <div class="card-modulo-curso">
                     <h3><svg><use href="#icon-book-open"></use></svg>PIX e Pagamentos Digitais</h3>
-                    <p>Como cadastrar chaves PIX, enviar e receber dinheiro, pagar por QR Code e outros meios com segurança.</p>
+                    <p>10 Aulas de precisão financeira. Chaves PIX, transações e prevenção a fraudes.</p>
                     <a href="#" class="botao botao-primario" data-module-key="pix" onclick="showModulePage(event)">Acessar Módulo
                         <svg width="20" height="20"><use href="#icon-arrow-right"></use></svg></a>
                 </div>
@@ -548,8 +573,10 @@
             <div class="nav-direita">
                 <button class="botao-zoom" onclick="zoomOut()" title="Diminuir zoom"><svg><use href="#icon-zoom-out"></use></svg></button>
                 <button class="botao-zoom" onclick="zoomIn()" title="Aumentar zoom"><svg><use href="#icon-zoom-in"></use></svg></button>
-                <button class="btn-cor-branca" onclick="setTheme('light')" title="Fundo Branco"></button>
-                <button class="btn-cor-preta" onclick="setTheme('dark')" title="Fundo Preto"></button>
+                <button class="botao-tema" title="Mudar tema">
+                    <svg class="moon-icon"><use href="#icon-moon"></use></svg>
+                    <svg class="sun-icon"><use href="#icon-sun"></use></svg>
+                </button>
                 <a href="#" class="user-info" onclick="showSettingsPage(event)">
                     <div class="user-avatar">
                         <img id="avatar-img-mod" src="" alt="Avatar">
@@ -564,7 +591,8 @@
     <main class="dashboard-content">
         <div class="container">
             <a href="#" class="back-link" onclick="showDashboard(event)">
-                <svg><use href="#icon-arrow-left"></use></svg> Voltar para Home
+                <svg><use href="#icon-arrow-left"></use></svg>
+                Voltar para Home
             </a>
             <div class="module-intro-card">
                 <h1 id="module-title"></h1>
@@ -585,10 +613,12 @@
             </div>
             <div class="module-navigation">
                 <button class="botao botao-logout" onclick="navigateLesson(-1)">
-                    <svg><use href="#icon-arrow-left"></use></svg> Aula Anterior
+                    <svg><use href="#icon-arrow-left"></use></svg>
+                    Aula Anterior
                 </button>
                 <button class="botao botao-primario" onclick="navigateLesson(1)">
-                    Próxima Aula <svg><use href="#icon-arrow-right"></use></svg>
+                    Próxima Aula
+                    <svg><use href="#icon-arrow-right"></use></svg>
                 </button>
             </div>
         </div>
@@ -602,8 +632,10 @@
             <div class="nav-direita">
                 <button class="botao-zoom" onclick="zoomOut()" title="Diminuir zoom"><svg><use href="#icon-zoom-out"></use></svg></button>
                 <button class="botao-zoom" onclick="zoomIn()" title="Aumentar zoom"><svg><use href="#icon-zoom-in"></use></svg></button>
-                <button class="btn-cor-branca" onclick="setTheme('light')" title="Fundo Branco"></button>
-                <button class="btn-cor-preta" onclick="setTheme('dark')" title="Fundo Preto"></button>
+                <button class="botao-tema" title="Mudar tema">
+                    <svg class="moon-icon"><use href="#icon-moon"></use></svg>
+                    <svg class="sun-icon"><use href="#icon-sun"></use></svg>
+                </button>
                 <a href="#" class="user-info" onclick="showSettingsPage(event)">
                     <div class="user-avatar">
                         <img id="avatar-img-forum" src="" alt="Avatar">
@@ -621,10 +653,10 @@
             </a>
             <div class="page-card" style="max-width: 800px;">
                 <h1>Fórum de Discussões</h1>
-                <p>Compartilhe suas dúvidas e aprendizados mantendo a ordem e a disciplina.</p>
+                <p>Compartilhe suas dúvidas mantendo o rigor e a disciplina.</p>
 
                 <div class="forum-form">
-                    <textarea id="forum-new-post" placeholder="Escreva sua mensagem acadêmica aqui..."></textarea>
+                    <textarea id="forum-new-post" placeholder="Escreva sua mensagem aqui..."></textarea>
                     <button class="botao botao-primario" onclick="submitForumPost()">Enviar Mensagem</button>
                 </div>
 
@@ -642,8 +674,10 @@
             <div class="nav-direita">
                 <button class="botao-zoom" onclick="zoomOut()" title="Diminuir zoom"><svg><use href="#icon-zoom-out"></use></svg></button>
                 <button class="botao-zoom" onclick="zoomIn()" title="Aumentar zoom"><svg><use href="#icon-zoom-in"></use></svg></button>
-                <button class="btn-cor-branca" onclick="setTheme('light')" title="Fundo Branco"></button>
-                <button class="btn-cor-preta" onclick="setTheme('dark')" title="Fundo Preto"></button>
+                <button class="botao-tema" title="Mudar tema">
+                    <svg class="moon-icon"><use href="#icon-moon"></use></svg>
+                    <svg class="sun-icon"><use href="#icon-sun"></use></svg>
+                </button>
                 <a href="#" class="user-info" onclick="showSettingsPage(event)">
                     <div class="user-avatar">
                         <img id="avatar-img-set" src="" alt="Avatar">
@@ -665,7 +699,7 @@
                 <h1>Configurações do Perfil</h1>
                 <form onsubmit="saveSettings(event)">
                     <div class="form-grupo">
-                        <label for="user-email-display">E-mail de Cadastro (Mude aqui se desejar alterar o login)</label>
+                        <label for="user-email-display">E-mail de Cadastro</label>
                         <input type="email" id="user-email-display" class="form-input" required>
                     </div>
                     <div class="form-grupo">
@@ -694,16 +728,8 @@
                         <input type="text" id="user-sexo-especifico" class="form-input">
                     </div>
                     <div class="form-grupo">
-                        <label for="user-avatar-input">Foto de Perfil</label>
-                        <input type="file" id="user-avatar-input" class="form-input" accept="image/*" onchange="previewImage(event)">
-
-                        <div id="image-preview-container" style="display: none; margin-top: 15px;">
-                            <label for="image-width-slider">Ajustar Tamanho da Foto Visível:</label><br>
-                            <input type="range" id="image-width-slider" min="30" max="300" value="100" style="width:100%; margin-bottom: 10px;" oninput="resizePreviewImage(this.value)">
-                            <div style="border: 1px dashed var(--cor-borda); display: inline-block; padding: 5px; background: var(--cor-fundo-sutil);">
-                                <img id="temp-avatar-preview" src="" alt="Sua foto redimensionada aparecerá aqui" style="width: 100px; height: auto; object-fit: contain;">
-                            </div>
-                        </div>
+                        <label for="user-avatar-input">Foto de Perfil (Qualquer tamanho)</label>
+                        <input type="file" id="user-avatar-input" class="form-input" accept="image/*">
                     </div>
                     <div class="form-grupo">
                         <label for="user-new-password">Nova Senha</label>
@@ -716,8 +742,8 @@
                     <h2>Gerenciamento de Conta</h2>
                     <div class="danger-zone">
                         <h3>Zona de Perigo</h3>
-                        <p>Atenção redobrada. Assegure-se das suas ações.</p>
-                        <button class="botao botao-aviso" onclick="handleDeactivateAccount()">Desativar Conta Temporariamente</button>
+                        <p>Atenção redobrada. Apenas atue aqui sob estrita necessidade.</p>
+                        <button class="botao botao-aviso" onclick="handleDeactivateAccount()">Desativar Conta</button>
                         <button class="botao botao-perigo" onclick="handleDeleteAccount()">Excluir Conta Permanentemente</button>
                     </div>
                 </div>
@@ -733,8 +759,10 @@
             <div class="nav-direita">
                 <button class="botao-zoom" onclick="zoomOut()" title="Diminuir zoom"><svg><use href="#icon-zoom-out"></use></svg></button>
                 <button class="botao-zoom" onclick="zoomIn()" title="Aumentar zoom"><svg><use href="#icon-zoom-in"></use></svg></button>
-                <button class="btn-cor-branca" onclick="setTheme('light')" title="Fundo Branco"></button>
-                <button class="btn-cor-preta" onclick="setTheme('dark')" title="Fundo Preto"></button>
+                <button class="botao-tema" title="Mudar tema">
+                    <svg class="moon-icon"><use href="#icon-moon"></use></svg>
+                    <svg class="sun-icon"><use href="#icon-sun"></use></svg>
+                </button>
                 <a href="#" class="user-info" onclick="showSettingsPage(event)">
                     <div class="user-avatar">
                         <img id="avatar-img-cert" src="" alt="Avatar">
@@ -778,8 +806,10 @@
             <div class="nav-direita">
                 <button class="botao-zoom" onclick="zoomOut()" title="Diminuir zoom"><svg><use href="#icon-zoom-out"></use></svg></button>
                 <button class="botao-zoom" onclick="zoomIn()" title="Aumentar zoom"><svg><use href="#icon-zoom-in"></use></svg></button>
-                <button class="btn-cor-branca" onclick="setTheme('light')" title="Fundo Branco"></button>
-                <button class="btn-cor-preta" onclick="setTheme('dark')" title="Fundo Preto"></button>
+                <button class="botao-tema" title="Mudar tema">
+                    <svg class="moon-icon"><use href="#icon-moon"></use></svg>
+                    <svg class="sun-icon"><use href="#icon-sun"></use></svg>
+                </button>
                 <a href="#" class="user-info" onclick="showSettingsPage(event)">
                     <div class="user-avatar">
                         <img id="avatar-img-quiz" src="" alt="Avatar">
@@ -800,7 +830,7 @@
             <div class="page-card">
                 <div id="quiz-intro">
                     <h2>Prova Final</h2>
-                    <p>Teste seus conhecimentos. A prova contém <strong>15 perguntas</strong> rigorosas. A média mínima estrita para aprovação é 6,0.</p>
+                    <p>Teste seus conhecimentos. A prova contém <strong>15 perguntas</strong> abrangentes do nosso banco de questões de todos os módulos. A média para aprovação é 6,0.</p>
                     <p id="quiz-attempt-status">Você tem 3 tentativas para atingir a média 6,0.</p>
                     <button class="botao botao-primario" onclick="startQuiz()">Iniciar Prova</button>
                 </div>
@@ -827,1144 +857,182 @@
 </section>
 
 <script>
-    // === MÓDULOS E AULAS MANTIDOS E EXPANDIDOS COM RIGOR ACADÊMICO ===
+    // === MÓDULOS E AULAS ===
     const moduleDatabase = {
       'informatica': {
-        title: "Introdução à Informática",
-        description: "Conceitos básicos, história da informática e importância da tecnologia na sociedade moderna.",
+        title: "Introdução à Informática", description: "10 Aulas: Fundamentos e evolução da tecnologia.",
         lessons: [
-          {
-            id: 'info_1',
-            title: 'Aula 1: A História dos Computadores',
-            content: `
-              <h4>Teoria: A Evolução</h4>
-              <p>A história da informática começa muito antes dos computadores eletrônicos, com ferramentas de contagem como o <strong>Ábaco</strong>, usado há milhares de anos para somar e subtrair.</p>
-              <p>No século XX surgem máquinas gigantes, como o <strong>ENIAC</strong> (1945), que ocupava salas inteiras e consumia muita energia. Com o tempo, a invenção do <strong>transistor</strong> (1947) e do <strong>circuito integrado</strong> permitiu a criação de computadores menores e mais rápidos.</p>
-              <p>Na década de 1980 surgem os <strong>PCs (Personal Computers)</strong>, trazendo o computador para dentro de casas e escritórios. Hoje carregamos computadores poderosos no bolso, que são os celulares.</p>
-              <h4>Por que isso é importante?</h4>
-              <ul>
-                <li>Entender que a tecnologia evolui rápido e sempre surgem novidades.</li>
-                <li>Perceber que a informática já faz parte do dia a dia de praticamente todos os trabalhos.</li>
-                <li>Conhecer a evolução ajuda a perder o medo de aprender coisas novas.</li>
-              </ul>
-            `
-          },
-          {
-            id: 'info_2',
-            title: 'Aula 2: O que é um Computador?',
-            content: `
-              <h4>Teoria: Entrada, Processamento e Saída</h4>
-              <p>Um computador é uma máquina capaz de receber dados, processá-los e gerar resultados. Esse processo é dividido em três etapas principais:</p>
-              <ol>
-                <li><strong>Entrada:</strong> tudo o que você envia para o computador (teclado, mouse, microfone, scanner).</li>
-                <li><strong>Processamento:</strong> o cérebro do computador (CPU/Processador) que interpreta os comandos.</li>
-                <li><strong>Saída:</strong> tudo o que o computador mostra para você (monitor, impressora, caixas de som).</li>
-              </ol>
-              <p>Além disso, o computador precisa de <strong>Memória RAM</strong> (memória rápida, temporária) e <strong>armazenamento</strong> (HD ou SSD) para guardar arquivos e programas.</p>
-              <h4>Exemplo prático</h4>
-              <p>Quando você escreve um texto:</p>
-              <ul>
-                <li>O teclado envia as letras (entrada).</li>
-                <li>A CPU interpreta e mostra as letras na tela (processamento).</li>
-                <li>O monitor exibe o texto (saída).</li>
-              </ul>
-            `
-          },
-          {
-            id: 'info_3',
-            title: 'Aula 3: Ligando e Entrando no Computador',
-            content: `
-              <h4>Teoria: O Processo de Boot</h4>
-              <p>Para "entrar" no computador, primeiro pressionamos o botão <strong>Power</strong>. O computador inicia um processo chamado <strong>Boot</strong>, onde ele testa as peças, verifica a memória e carrega o sistema operacional (Windows, Linux, etc.).</p>
-              <p>Em muitos casos, o computador mostra o logotipo do fabricante (Dell, HP, Lenovo, etc.) e depois a tela de login do sistema.</p>
-              <h4>Tela de Login</h4>
-              <p>Na tela de login, geralmente você vê:</p>
-              <ul>
-                <li>Seu <strong>nome de usuário</strong> ou lista de usuários.</li>
-                <li>Um campo para <strong>senha</strong>.</li>
-                <li>Botões de <em>Desligar</em> ou <em>Reiniciar</em>.</li>
-              </ul>
-              <p>A senha é sua <strong>chave de segurança</strong> para que ninguém mexa nos seus arquivos sem permissão.</p>
-              <h4>Passo a passo prático</h4>
-              <ol>
-                <li>Localize o botão de ligar do computador ou notebook (símbolo de círculo com um traço).</li>
-                <li>Pressione e solte o botão. Aguarde alguns segundos até aparecer a tela.</li>
-                <li>Quando a tela de login aparecer, clique no seu usuário (se for necessário).</li>
-                <li>Digite sua senha com calma e clique em <strong>Enter</strong> ou no botão de entrar.</li>
-              </ol>
-            `
-          },
-          {
-            id: 'info_4',
-            title: 'Aula 4: Dominando Mouse e Teclado',
-            content: `
-              <h4>Teoria: Interação Básica</h4>
-              <p>O <strong>Mouse</strong> controla a seta (cursor) na tela. O botão esquerdo serve para <strong>selecionar</strong>, <strong>arrastar</strong> e <strong>abrir</strong> itens. O botão direito abre o <strong>menu de contexto</strong> com mais opções.</p>
-              <p>O <strong>Teclado</strong> é usado para digitar letras, números e comandos. Algumas teclas importantes:</p>
-              <ul>
-                <li><strong>Enter:</strong> confirma uma ação ou pula para a próxima linha.</li>
-                <li><strong>Backspace:</strong> apaga o caractere à esquerda.</li>
-                <li><strong>Delete:</strong> apaga o caractere à direita (ou arquivos selecionados).</li>
-                <li><strong>Shift:</strong> deixa a letra temporariamente maiúscula.</li>
-                <li><strong>Caps Lock:</strong> ativa/desativa letras maiúsculas fixas.</li>
-              </ul>
-              <h4>Prática com o Mouse</h4>
-              <ol>
-                <li>Aponte o cursor para um ícone na Área de Trabalho.</li>
-                <li>Faça um <strong>clique simples</strong> para selecionar.</li>
-                <li>Faça um <strong>duplo clique</strong> (clique duas vezes rápido) para abrir o programa.</li>
-                <li>Clique com o <strong>botão direito</strong> para ver opções adicionais.</li>
-              </ol>
-            `
-          },
-          {
-            id: 'info_5',
-            title: 'Aula 5: A Área de Trabalho',
-            content: `
-              <h4>Teoria: Sua Mesa Virtual</h4>
-              <p>Ao entrar no sistema, você vê a <strong>Área de Trabalho (Desktop)</strong>. É como uma mesa de escritório, onde ficam ícones de atalhos para programas, pastas e arquivos importantes.</p>
-              <p>Na parte de baixo geralmente fica a <strong>Barra de Tarefas</strong>, que mostra:</p>
-              <ul>
-                <li>Botão <strong>Iniciar</strong> (Windows) para acessar todos os programas.</li>
-                <li>Atalhos fixados (navegador, explorador de arquivos, etc.).</li>
-                <li>Programas que estão abertos no momento.</li>
-                <li>Relógio e ícones de volume, rede e notificações.</li>
-              </ul>
-              <h4>Prática</h4>
-              <ol>
-                <li>Identifique o botão <strong>Iniciar</strong> (ícone do Windows) na barra de tarefas.</li>
-                <li>Clique nele e explore os programas instalados.</li>
-                <li>Clique em uma pasta qualquer para ver seus documentos.</li>
-              </ol>
-            `
-          },
-          {
-            id: 'info_6',
-            title: 'Aula 6: Sistema de Arquivos e Diretórios Acadêmicos',
-            content: `
-              <h4>Estrutura Lógica</h4>
-              <p>O computador obedece a uma lógica de árvore. A raiz origina diretórios (pastas), que abrigam arquivos ou subdiretórios. Manter o rigor na nomeação dos diretórios (ex: "Semestre_1", "TCC") é a premissa de um universitário focado. </p>
-            `
-          },
-          {
-            id: 'info_7',
-            title: 'Aula 7: Arquitetura de Von Neumann',
-            content: `
-              <h4>Fundamento Computacional</h4>
-              <p>A arquitetura proposta por John von Neumann em 1945 estabelece que dados e programas compartilham a mesma memória principal. Essa genialidade permite que os computadores não precisem ser re-construídos fisicamente para trocar de tarefa. É o alicerce teórico de toda a computação atual.
-
-[Image of Von Neumann architecture diagram]
-</p>
-            `
-          },
-          {
-            id: 'info_8',
-            title: 'Aula 8: Periféricos Modernos e Padrões de I/O',
-            content: `
-              <h4>Entradas e Saídas</h4>
-              <p>A interação mecânica da máquina com o homem moderno dá-se via I/O (Input/Output). O padrão USB unificou globalmente os conectores. Compreender a via de transmissão exige atenção à velocidade e ao tipo de dado que trafega.</p>
-            `
-          },
-          {
-            id: 'info_9',
-            title: 'Aula 9: Tipos de Licenças de Software',
-            content: `
-              <h4>Legalidade e Ordem</h4>
-              <p>A ignorância da lei não exime a falha. Softwares dividem-se em Freeware (livre uso), Open Source (código modificável), Shareware (uso restrito) e Proprietário. O ambiente corporativo e acadêmico demanda obediência estrita às licenças de uso.</p>
-            `
-          },
-          {
-            id: 'info_10',
-            title: 'Aula 10: Princípios Universais de Segurança da Informação',
-            content: `
-              <h4>Integridade, Confidencialidade e Disponibilidade</h4>
-              <p>A tríade CIA da Segurança da Informação dita que a informação deve estar íntegra (não modificada), confidencial (acessível apenas aos autorizados) e disponível (quando exigida). Essa é a disciplina central na vida digital corporativa.
-
-[Image of CIA triad in information security]
-</p>
-            `
-          }
+          { id: 'info_1', title: 'Aula 1: A História dos Computadores', content: '<h4>Teoria: A Evolução</h4><p>A história da informática começa muito antes dos computadores eletrônicos, com ferramentas de contagem como o <strong>Ábaco</strong>, usado há milhares de anos para somar e subtrair.</p><p>No século XX surgem máquinas gigantes, como o <strong>ENIAC</strong> (1945), que ocupava salas inteiras e consumia muita energia. Com o tempo, a invenção do <strong>transistor</strong> (1947) e do <strong>circuito integrado</strong> permitiu a criação de computadores menores e mais rápidos.</p><p>Na década de 1980 surgem os <strong>PCs (Personal Computers)</strong>, trazendo o computador para dentro de casas e escritórios. Hoje carregamos computadores poderosos no bolso, que são os celulares.</p><h4>Por que isso é importante?</h4><ul><li>Entender que a tecnologia evolui rápido e sempre surgem novidades.</li><li>Perceber que a informática já faz parte do dia a dia de praticamente todos os trabalhos.</li><li>Conhecer a evolução ajuda a perder o medo de aprender coisas novas.</li></ul>' },
+          { id: 'info_2', title: 'Aula 2: O que é um Computador?', content: '<h4>Teoria: Entrada, Processamento e Saída</h4><p>Um computador é uma máquina capaz de receber dados, processá-los e gerar resultados. Esse processo é dividido em três etapas principais:</p><ol><li><strong>Entrada:</strong> tudo o que você envia para o computador (teclado, mouse, microfone, scanner).</li><li><strong>Processamento:</strong> o cérebro do computador (CPU/Processador) que interpreta os comandos.</li><li><strong>Saída:</strong> tudo o que o computador mostra para você (monitor, impressora, caixas de som).</li></ol><p>Além disso, o computador precisa de <strong>Memória RAM</strong> (memória rápida, temporária) e <strong>armazenamento</strong> (HD ou SSD) para guardar arquivos e programas.</p><h4>Exemplo prático</h4><p>Quando você escreve um texto:</p><ul><li>O teclado envia as letras (entrada).</li><li>A CPU interpreta e mostra as letras na tela (processamento).</li><li>O monitor exibe o texto (saída).</li></ul>' },
+          { id: 'info_3', title: 'Aula 3: Ligando e Entrando no Computador', content: '<h4>Teoria: O Processo de Boot</h4><p>Para "entrar" no computador, primeiro pressionamos o botão <strong>Power</strong>. O computador inicia um processo chamado <strong>Boot</strong>, onde ele testa as peças, verifica a memória e carrega o sistema operacional (Windows, Linux, etc.).</p><p>Em muitos casos, o computador mostra o logotipo do fabricante (Dell, HP, Lenovo, etc.) e depois a tela de login do sistema.</p><h4>Tela de Login</h4><p>Na tela de login, geralmente você vê:</p><ul><li>Seu <strong>nome de usuário</strong> ou lista de usuários.</li><li>Um campo para <strong>senha</strong>.</li><li>Botões de <em>Desligar</em> ou <em>Reiniciar</em>.</li></ul><p>A senha é sua <strong>chave de segurança</strong> para que ninguém mexa nos seus arquivos sem permissão.</p><h4>Passo a passo prático</h4><ol><li>Localize o botão de ligar do computador ou notebook (símbolo de círculo com um traço).</li><li>Pressione e solte o botão. Aguarde alguns segundos até aparecer a tela.</li><li>Quando a tela de login aparecer, clique no seu usuário (se for necessário).</li><li>Digite sua senha com calma e clique em <strong>Enter</strong> ou no botão de entrar.</li></ol>' },
+          { id: 'info_4', title: 'Aula 4: Dominando Mouse e Teclado', content: '<h4>Teoria: Interação Básica</h4><p>O <strong>Mouse</strong> controla a seta (cursor) na tela. O botão esquerdo serve para <strong>selecionar</strong>, <strong>arrastar</strong> e <strong>abrir</strong> itens. O botão direito abre o <strong>menu de contexto</strong> com mais opções.</p><p>O <strong>Teclado</strong> é usado para digitar letras, números e comandos. Algumas teclas importantes:</p><ul><li><strong>Enter:</strong> confirma uma ação ou pula para a próxima linha.</li><li><strong>Backspace:</strong> apaga o caractere à esquerda.</li><li><strong>Delete:</strong> apaga o caractere à direita (ou arquivos selecionados).</li><li><strong>Shift:</strong> deixa a letra temporariamente maiúscula.</li><li><strong>Caps Lock:</strong> ativa/desativa letras maiúsculas fixas.</li></ul><h4>Prática com o Mouse</h4><ol><li>Aponte o cursor para um ícone na Área de Trabalho.</li><li>Faça um <strong>clique simples</strong> para selecionar.</li><li>Faça um <strong>duplo clique</strong> (clique duas vezes rápido) para abrir o programa.</li><li>Clique com o <strong>botão direito</strong> para ver opções adicionais.</li></ol>' },
+          { id: 'info_5', title: 'Aula 5: A Área de Trabalho', content: '<h4>Teoria: Sua Mesa Virtual</h4><p>Ao entrar no sistema, você vê a <strong>Área de Trabalho (Desktop)</strong>. É como uma mesa de escritório, onde ficam ícones de atalhos para programas, pastas e arquivos importantes.</p><p>Na parte de baixo geralmente fica a <strong>Barra de Tarefas</strong>, que mostra:</p><ul><li>Botão <strong>Iniciar</strong> (Windows) para acessar todos os programas.</li><li>Atalhos fixados (navegador, explorador de arquivos, etc.).</li><li>Programas que estão abertos no momento.</li><li>Relógio e ícones de volume, rede e notificações.</li></ul><h4>Prática</h4><ol><li>Identifique o botão <strong>Iniciar</strong> (ícone do Windows) na barra de tarefas.</li><li>Clique nele e explore os programas instalados.</li><li>Clique em uma pasta qualquer para ver seus documentos.</li></ol>' },
+          { id: 'info_6', title: 'Aula 6: Estrutura de Janelas', content: '<p>Sistemas operacionais modernos funcionam através de "Janelas" (Windows), que podem ser minimizadas, maximizadas ou fechadas. Manter janelas organizadas eleva a produtividade.</p>' },
+          { id: 'info_7', title: 'Aula 7: Desligamento Seguro', content: '<p>Desligar um computador exige rigor. Sempre utilize o menu Iniciar e selecione Desligar para evitar corrupção de arquivos e manter a máquina saudável.</p>' },
+          { id: 'info_8', title: 'Aula 8: Teclas de Atalho Essenciais', content: '<p>Atalhos como Ctrl+C (Copiar) e Ctrl+V (Colar) não são luxos, são exigências para quem deseja operar o computador com verdadeira destreza.</p>' },
+          { id: 'info_9', title: 'Aula 9: Dispositivos Removíveis', content: '<p>Pen drives e HDs externos permitem carregar arquivos. Ao conectá-los, o sistema os reconhece na pasta "Meu Computador". Lembre-se sempre de ejetar com segurança.</p>' },
+          { id: 'info_10', title: 'Aula 10: Postura e Ergonomia', content: '<p>O corpo é um templo. Sente-se ereto, mantenha o monitor na altura dos olhos e descanse a cada hora. A informática exige cuidado não apenas com a máquina, mas com sua saúde física.</p>' }
         ]
       },
       'hardware': {
-        title: "Hardware e Software",
-        description: "Componentes físicos (hardware) e programas que o fazem funcionar (software).",
+        title: "Hardware e Software", description: "10 Aulas: A anatomia da máquina.",
         lessons: [
-          {
-            id: 'hw_1',
-            title: 'Aula 1: O que é Hardware?',
-            content: `
-              <h4>Teoria: As Peças Físicas</h4>
-              <p><strong>Hardware</strong> é toda parte física do computador: tudo o que você pode tocar.</p>
-              <ul>
-                <li><strong>Monitor:</strong> tela onde você vê as imagens.</li>
-                <li><strong>Teclado e Mouse:</strong> dispositivos de entrada para digitar e clicar.</li>
-                <li><strong>Gabinete/CPU:</strong> caixa onde ficam as principais peças internas.</li>
-                <li><strong>Placa-mãe:</strong> é como o "esqueleto/elétrico" que liga todas as peças.</li>
-                <li><strong>Memória RAM:</strong> memória rápida que guarda o que está em uso.</li>
-                <li><strong>HD/SSD:</strong> unidades onde os arquivos ficam guardados.</li>
-              </ul>
-            `
-          },
-          {
-            id: 'hw_2',
-            title: 'Aula 2: O que é Software?',
-            content: `
-              <h4>Teoria: As Instruções</h4>
-              <p><strong>Software</strong> é o conjunto de programas e instruções que dizem ao hardware o que fazer.</p>
-              <ul>
-                <li><strong>Sistema Operacional:</strong> Windows, Linux, macOS.</li>
-                <li><strong>Aplicativos:</strong> Word, Excel, navegador (Chrome, Edge), jogos.</li>
-                <li><strong>Drivers:</strong> programas que fazem o sistema conversar com impressora, placa de vídeo, etc.</li>
-              </ul>
-              <p>Sem software, o hardware não sabe o que fazer; sem hardware, o software não tem onde rodar.</p>
-            `
-          },
-          {
-            id: 'hw_3',
-            title: 'Aula 3: Dispositivos de Entrada e Saída',
-            content: `
-              <h4>Teoria: Conversando com a Máquina</h4>
-              <p>Os dispositivos de <strong>entrada</strong> enviam informações para o computador; os de <strong>saída</strong> mostram o resultado.</p>
-              <ul>
-                <li><strong>Entrada:</strong> teclado, mouse, microfone, scanner, câmera.</li>
-                <li><strong>Saída:</strong> monitor, impressora, caixas de som.</li>
-                <li><strong>Entrada e saída:</strong> tela sensível ao toque (touchscreen), pen drive.</li>
-              </ul>
-              <p>Exemplo: você fala no microfone (entrada) e o som sai nas caixas de som (saída).</p>
-            `
-          },
-          {
-            id: 'hw_4',
-            title: 'Aula 4: Armazenamento: HD vs SSD',
-            content: `
-              <h4>Teoria: Onde guardamos tudo</h4>
-              <p>O <strong>HD (Disco Rígido)</strong> é mais antigo, com partes mecânicas. O <strong>SSD (Unidade de Estado Sólido)</strong> é moderno, sem partes móveis, muito mais rápido e silencioso.</p>
-              <p>Trocar um HD por um SSD faz o computador ligar e abrir programas muito mais rápido.</p>
-            `
-          },
-          {
-            id: 'hw_5',
-            title: 'Aula 5: Portas e Conexões',
-            content: `
-              <h4>Teoria: Conectando Coisas</h4>
-              <ul>
-                <li><strong>USB:</strong> porta universal para pen drives, mouses, impressoras.</li>
-                <li><strong>HDMI:</strong> transmite vídeo e áudio para TVs e monitores.</li>
-                <li><strong>P2:</strong> conector redondo para fones e caixas de som.</li>
-                <li><strong>RJ45:</strong> conector de cabo de rede (internet cabeada).</li>
-              </ul>
-              <p>Identificar as portas ajuda a conectar corretamente seus dispositivos sem forçar ou quebrar.</p>
-            `
-          },
-          {
-            id: 'hw_6',
-            title: 'Aula 6: Barramentos e Conexões Internas',
-            content: `
-              <h4>Tráfego Lógico</h4>
-              <p>A placa-mãe comunica-se pelas trilhas de cobre chamadas "barramentos" (Buses). O PCIe (Peripheral Component Interconnect Express) é o padrão rigoroso de alta velocidade para placas de vídeo e SSDs NVMe. O tráfego exige banda para não criar gargalos (bottlenecks).</p>
-            `
-          },
-          {
-            id: 'hw_7',
-            title: 'Aula 7: Memória Cache e Hierarquia Estrutural',
-            content: `
-              <h4>Velocidade Sistêmica</h4>
-              <p>Dentro do próprio processador repousam as memórias L1, L2 e L3. Extremamente velozes, mas minúsculas, elas poupam o processador de buscar dados longe, na RAM. A disciplina da eficiência reside na proximidade física dos dados essenciais.</p>
-            `
-          },
-          {
-            id: 'hw_8',
-            title: 'Aula 8: Fontes de Alimentação e Eficiência Energética',
-            content: `
-              <h4>A Base Elétrica</h4>
-              <p>A Fonte ATX não serve meramente para plugar na tomada. Ela exige certificação "80 Plus" (Bronze, Gold, Titanium) atestando que a conversão de Corrente Alternada para Contínua ocorre sem dissipação fútil em calor.</p>
-            `
-          },
-          {
-            id: 'hw_9',
-            title: 'Aula 9: Refrigeração e Termodinâmica Computacional',
-            content: `
-              <h4>O Controle Térmico</h4>
-              <p>A física pune o calor excessivo com a desaceleração forçada (Thermal Throttling). Uso de Air Coolers ou Water Coolers adequados preserva a longevidade dos microchips, atestando o seu zelo patrimonial. </p>
-            `
-          },
-          {
-            id: 'hw_10',
-            title: 'Aula 10: Montagem e Diagnóstico de Falhas (Troubleshooting)',
-            content: `
-              <h4>Investigação Metódica</h4>
-              <p>Se a máquina não "dá vídeo", remova e limpe com borracha isenta as memórias RAM. A análise de bipes sonoros emitidos pela placa-mãe (Post Beep Codes) indica invariavelmente onde a negligência se instalou.</p>
-            `
-          }
+          { id: 'hw_1', title: 'Aula 1: O que é Hardware?', content: '<h4>Teoria: As Peças Físicas</h4><p><strong>Hardware</strong> é toda parte física do computador: tudo o que você pode tocar.</p><ul><li><strong>Monitor:</strong> tela onde você vê as imagens.</li><li><strong>Teclado e Mouse:</strong> dispositivos de entrada para digitar e clicar.</li><li><strong>Gabinete/CPU:</strong> caixa onde ficam as principais peças internas.</li><li><strong>Placa-mãe:</strong> é como o "esqueleto/elétrico" que liga todas as peças.</li><li><strong>Memória RAM:</strong> memória rápida que guarda o que está em uso.</li><li><strong>HD/SSD:</strong> unidades onde os arquivos ficam guardados.</li></ul>' },
+          { id: 'hw_2', title: 'Aula 2: O que é Software?', content: '<h4>Teoria: As Instruções</h4><p><strong>Software</strong> é o conjunto de programas e instruções que dizem ao hardware o que fazer.</p><ul><li><strong>Sistema Operacional:</strong> Windows, Linux, macOS.</li><li><strong>Aplicativos:</strong> Word, Excel, navegador (Chrome, Edge), jogos.</li><li><strong>Drivers:</strong> programas que fazem o sistema conversar com impressora, placa de vídeo, etc.</li></ul><p>Sem software, o hardware não sabe o que fazer; sem hardware, o software não tem onde rodar.</p>' },
+          { id: 'hw_3', title: 'Aula 3: Dispositivos de Entrada e Saída', content: '<h4>Teoria: Conversando com a Máquina</h4><p>Os dispositivos de <strong>entrada</strong> enviam informações para o computador; os de <strong>saída</strong> mostram o resultado.</p><ul><li><strong>Entrada:</strong> teclado, mouse, microfone, scanner, câmera.</li><li><strong>Saída:</strong> monitor, impressora, caixas de som.</li><li><strong>Entrada e saída:</strong> tela sensível ao toque (touchscreen), pen drive.</li></ul><p>Exemplo: você fala no microfone (entrada) e o som sai nas caixas de som (saída).</p>' },
+          { id: 'hw_4', title: 'Aula 4: Armazenamento: HD vs SSD', content: '<h4>Teoria: Onde guardamos tudo</h4><p>O <strong>HD (Disco Rígido)</strong> é mais antigo, com partes mecânicas. O <strong>SSD (Unidade de Estado Sólido)</strong> é moderno, sem partes móveis, muito mais rápido e silencioso.</p><p>Trocar um HD por um SSD faz o computador ligar e abrir programas muito mais rápido.</p>' },
+          { id: 'hw_5', title: 'Aula 5: Portas e Conexões', content: '<h4>Teoria: Conectando Coisas</h4><ul><li><strong>USB:</strong> porta universal para pen drives, mouses, impressoras.</li><li><strong>HDMI:</strong> transmite vídeo e áudio para TVs e monitores.</li><li><strong>P2:</strong> conector redondo para fones e caixas de som.</li><li><strong>RJ45:</strong> conector de cabo de rede (internet cabeada).</li></ul><p>Identificar as portas ajuda a conectar corretamente seus dispositivos sem forçar ou quebrar.</p>' },
+          { id: 'hw_6', title: 'Aula 6: Placa de Vídeo (GPU)', content: '<p>A matriz gráfica que renderiza imagens em monitores. Imprescindível para edição visual e simulação em 3D.</p>' },
+          { id: 'hw_7', title: 'Aula 7: Fonte de Alimentação', content: '<p>Converte a tensão alternada para a estabilidade da corrente contínua exigida pelos chips. Nunca economize em uma fonte.</p>' },
+          { id: 'hw_8', title: 'Aula 8: Cuidados com os Cabos', content: '<p>Portas USB, HDMI e cabo de rede (RJ-45). Inseri-las tortas destrói o maquinário. Exija cuidado de si mesmo ao manusear componentes delicados.</p>' },
+          { id: 'hw_9', title: 'Aula 9: Drivers de Sistema', content: '<p>Os Drivers são softwares tradutores. Eles ensinam o Sistema Operacional a conversar com uma nova peça de hardware instalada.</p>' },
+          { id: 'hw_10', title: 'Aula 10: Manutenção e Limpeza', content: '<p>Poeira eleva o calor e destrói o PC. A limpeza periódica interna é a responsabilidade inegociável de quem o possui.</p>' }
         ]
       },
       'os': {
-        title: "Sistemas Operacionais",
-        description: "Funcionamento e uso de sistemas como Windows, macOS e Linux.",
+        title: "Sistemas Operacionais", description: "10 Aulas: O controle mestre do computador.",
         lessons: [
-          {
-            id: 'os_1',
-            title: 'Aula 1: O Gerente do Computador',
-            content: `
-              <p>O <strong>Sistema Operacional (S.O.)</strong> é o gerente do computador. Ele controla o uso do processador, memória, dispositivos e organiza os programas.</p>
-              <p>Sem o S.O., o computador ligaria, mas você não teria interface para clicar em nada.</p>
-              <ul>
-                <li>Windows: muito usado em PCs.</li>
-                <li>macOS: usado em computadores da Apple.</li>
-                <li>Linux: sistema livre, usado em servidores e computadores pessoais.</li>
-              </ul>
-            `
-          },
-          {
-            id: 'os_2',
-            title: 'Aula 2: Windows (Microsoft)',
-            content: `
-              <p>O Windows é o sistema mais popular para computadores pessoais. Ele tem:</p>
-              <ul>
-                <li>Botão <strong>Iniciar</strong> para acessar programas.</li>
-                <li>Janelas para cada programa aberto.</li>
-                <li>Barra de Tarefas para alternar entre programas.</li>
-              </ul>
-              <p>Prática: abra o <strong>Explorador de Arquivos</strong> e explore as pastas Documento, Imagens e Downloads.</p>
-            `
-          },
-          {
-            id: 'os_3',
-            title: 'Aula 3: macOS (Apple)',
-            content: `
-              <p>O macOS é o sistema dos computadores Mac. Ele se destaca por:</p>
-              <ul>
-                <li>Interface com design limpo e amigável.</li>
-                <li>Integração forte com iPhone e iPad.</li>
-                <li>Barra de aplicativos chamada <strong>Dock</strong> na parte inferior.</li>
-              </ul>
-            `
-          },
-          {
-            id: 'os_4',
-            title: 'Aula 4: Linux (Código Aberto)',
-            content: `
-              <p>O Linux é um sistema de <strong>código aberto</strong>, ou seja, qualquer pessoa pode estudar e modificar o código.</p>
-              <p>É muito usado em:</p>
-              <ul>
-                <li>Servidores de internet.</li>
-                <li>Computadores de programadores.</li>
-                <li>Distribuições como Ubuntu, Mint, Fedora, etc.</li>
-              </ul>
-            `
-          },
-          {
-            id: 'os_5',
-            title: 'Aula 5: Gerenciando Arquivos',
-            content: `
-              <p>Arquivos são como folhas de papel digitais. Para se organizar, criamos <strong>pastas</strong> com nomes claros (por exemplo: <em>Documentos do Trabalho</em>, <em>Fotos da Família</em>).</p>
-              <p>Prática:</p>
-              <ol>
-                <li>Abra o Explorador de Arquivos (Windows) ou Finder (macOS).</li>
-                <li>Crie uma pasta chamada <strong>Curso Informática</strong>.</li>
-                <li>Dentro dela, crie subpastas: <em>Textos</em>, <em>Planilhas</em>, <em>Imagens</em>.</li>
-              </ol>
-            `
-          },
-          {
-            id: 'os_6',
-            title: 'Aula 6: Gerenciamento Sistêmico de Processos',
-            content: `
-              <h4>A Lógica do Kernel</h4>
-              <p>O núcleo do S.O. (Kernel) alterna centésimos de segundo entre os programas abertos para gerar a ilusão de multitarefa (Multitasking). O Gerenciador de Tarefas existe para forçar a terminação (Kill) de processos indisciplinados que consomem toda a capacidade de processamento.</p>
-            `
-          },
-          {
-            id: 'os_7',
-            title: 'Aula 7: Gerenciamento de Memória Virtual',
-            content: `
-              <h4>Expansão Lógica</h4>
-              <p>Quando a RAM escasseia, o sistema aloca no Disco Rígido um espaço ilusório chamado Arquivo de Paginação (Swap). Isso previne a tela azul da morte, mas atesta que a máquina carece de mais capacidade física real instalada.</p>
-            `
-          },
-          {
-            id: 'os_8',
-            title: 'Aula 8: Permissões e Segurança de Usuários Corporativos',
-            content: `
-              <h4>Hierarquia Absoluta</h4>
-              <p>Contas dividem-se em "Administrador" e "Padrão". Um usuário padrão é desprovido da benesse de instalar softwares. É a medida administrativa rigorosa imposta para barrar a infiltração insidiosa de vírus nos terminais operacionais.</p>
-            `
-          },
-          {
-            id: 'os_9',
-            title: 'Aula 9: Virtualização e Máquinas Virtuais',
-            content: `
-              <h4>Simulação Fidedigna</h4>
-              <p>O uso de Hypervisors (VirtualBox, VMWare) permite instalar um Windows operando estritamente dentro de uma janela do Linux (e vice-versa). O isolamento de segurança exige que o ambiente acadêmico domine este teste asséptico.</p>
-            `
-          },
-          {
-            id: 'os_10',
-            title: 'Aula 10: Interface de Linha de Comando (CLI)',
-            content: `
-              <h4>O Poder Original</h4>
-              <p>Longe da interface colorida habita o Prompt de Comando (CMD) ou Terminal. O estudo austero obriga o conhecimento de comandos fundamentais como "cd", "dir/ls", e "ipconfig/ifconfig". </p>
-            `
-          }
+          { id: 'os_1', title: 'Aula 1: O Gerente do Computador', content: '<p>O <strong>Sistema Operacional (S.O.)</strong> é o gerente do computador. Ele controla o uso do processador, memória, dispositivos e organiza os programas.</p><p>Sem o S.O., o computador ligaria, mas você não teria interface para clicar em nada.</p><ul><li>Windows: muito usado em PCs.</li><li>macOS: usado em computadores da Apple.</li><li>Linux: sistema livre, usado em servidores e computadores pessoais.</li></ul>' },
+          { id: 'os_2', title: 'Aula 2: Windows (Microsoft)', content: '<p>O Windows é o sistema mais popular para computadores pessoais. Ele tem:</p><ul><li>Botão <strong>Iniciar</strong> para acessar programas.</li><li>Janelas para cada programa aberto.</li><li>Barra de Tarefas para alternar entre programas.</li></ul><p>Prática: abra o <strong>Explorador de Arquivos</strong> e explore as pastas Documento, Imagens e Downloads.</p>' },
+          { id: 'os_3', title: 'Aula 3: macOS (Apple)', content: '<p>O macOS é o sistema dos computadores Mac. Ele se destaca por:</p><ul><li>Interface com design limpo e amigável.</li><li>Integração forte com iPhone e iPad.</li><li>Barra de aplicativos chamada <strong>Dock</strong> na parte inferior.</li></ul>' },
+          { id: 'os_4', title: 'Aula 4: Linux (Código Aberto)', content: '<p>O Linux é um sistema de <strong>código aberto</strong>, ou seja, qualquer pessoa pode estudar e modificar o código.</p><p>É muito usado em:</p><ul><li>Servidores de internet.</li><li>Computadores de programadores.</li><li>Distribuições como Ubuntu, Mint, Fedora, etc.</li></ul>' },
+          { id: 'os_5', title: 'Aula 5: Gerenciando Arquivos', content: '<p>Arquivos são como folhas de papel digitais. Para se organizar, criamos <strong>pastas</strong> com nomes claros (por exemplo: <em>Documentos do Trabalho</em>, <em>Fotos da Família</em>).</p><p>Prática:</p><ol><li>Abra o Explorador de Arquivos (Windows) ou Finder (macOS).</li><li>Crie uma pasta chamada <strong>Curso Informática</strong>.</li><li>Dentro dela, crie subpastas: <em>Textos</em>, <em>Planilhas</em>, <em>Imagens</em>.</li></ol>' },
+          { id: 'os_6', title: 'Aula 6: Atualizações de Sistema', content: '<p>Updates remendam buracos de segurança e otimizam a máquina. Procrastiná-los é uma falha inaceitável.</p>' },
+          { id: 'os_7', title: 'Aula 7: Gerenciador de Tarefas', content: '<p>Quando um programa rebela-se e trava, evoca-se o Gerenciador (Ctrl+Shift+Esc) para aniquilar sua execução sem reiniciar a máquina.</p>' },
+          { id: 'os_8', title: 'Aula 8: Contas de Usuário', content: '<p>O Administrador manda em tudo; o usuário Padrão sofre restrições. Usar a conta Padrão no dia a dia mitiga estragos por vírus acidentais.</p>' },
+          { id: 'os_9', title: 'Aula 9: Painel de Controle e Ajustes', content: '<p>Central para gerir impressoras, desinstalar softwares e moldar o comportamento sistêmico do mouse e redes.</p>' },
+          { id: 'os_10', title: 'Aula 10: Terminal / Prompt', content: '<p>A interface seca de texto permite ao administrador injetar comandos cirúrgicos de rede e processos longe do alcance visual leigo.</p>' }
         ]
       },
       'redes': {
-        title: "Internet e Redes",
-        description: "Navegação na web, uso de navegadores, e-mail, redes sociais e segurança online.",
+        title: "Internet e Redes", description: "10 Aulas: Conectividade, nuvem e disciplina online.",
         lessons: [
-          {
-            id: 'net_1',
-            title: 'Aula 1: Internet vs Web',
-            content: `
-              <p><strong>Internet</strong> é uma rede mundial de cabos, roteadores e computadores.</p>
-              <p><strong>Web</strong> é o conjunto de sites que você acessa pela internet.</p>
-              <p>Exemplo: quando você abre o navegador (Chrome, Edge, Firefox) e entra em um site, você está usando a Web através da Internet.</p>
-            `
-          },
-          {
-            id: 'net_2',
-            title: 'Aula 2: O que é Wi-Fi?',
-            content: `
-              <p><strong>Wi‑Fi</strong> é a tecnologia que permite conectar à internet sem fios, usando ondas de rádio.</p>
-              <p>Você precisa de:</p>
-              <ul>
-                <li>Um roteador Wi‑Fi.</li>
-                <li>Uma rede com nome (SSID) e senha.</li>
-              </ul>
-              <p>Prática: no celular ou notebook, procure o ícone de Wi‑Fi, escolha a rede correta, digite a senha e conecte.</p>
-            `
-          },
-          {
-            id: 'net_3',
-            title: 'Aula 3: E-mail Profissional',
-            content: `
-              <p>O <strong>e-mail</strong> é seu endereço digital. Para usar de forma profissional:</p>
-              <ul>
-                <li>Use um endereço com seu nome, evitando apelidos.</li>
-                <li>Escreva assunto claro (por exemplo: "Envio de Documentos").</li>
-                <li>Seja educado e direto.</li>
-              </ul>
-            `
-          },
-          {
-            id: 'net_4',
-            title: 'Aula 4: Segurança Online',
-            content: `
-              <p>Algumas ameaças comuns:</p>
-              <ul>
-                <li><strong>Phishing:</strong> e-mails falsos que pedem seus dados.</li>
-                <li><strong>Links suspeitos:</strong> podem levar a sites maliciosos.</li>
-              </ul>
-              <p>Boas práticas:</p>
-              <ul>
-                <li>Nunca informe senha em sites estranhos.</li>
-                <li>Verifique se o endereço começa com <strong>https://</strong>.</li>
-                <li>Desconfie de mensagens oferecendo dinheiro fácil.</li>
-              </ul>
-            `
-          },
-          {
-            id: 'net_5',
-            title: 'Aula 5: A Nuvem (Cloud)',
-            content: `
-              <p>Guardar arquivos "na nuvem" (Google Drive, OneDrive, iCloud) significa salvá-los em servidores na internet.</p>
-              <p>Vantagens:</p>
-              <ul>
-                <li>Acessar documentos de qualquer lugar.</li>
-                <li>Ter cópia de segurança se o computador quebrar.</li>
-                <li>Compartilhar arquivos facilmente com outras pessoas.</li>
-              </ul>
-            `
-          },
-          {
-            id: 'net_6',
-            title: 'Aula 6: Modelo OSI e TCP/IP',
-            content: `
-              <h4>A Lógica das Camadas</h4>
-              <p>O tráfego universal da rede respeita 7 camadas hierárquicas (OSI): Física, Enlace, Rede, Transporte, Sessão, Apresentação e Aplicação. O domínio intelectual dessa matéria atesta a separação entre amadores e profissionais de Redes.
-
-[Image of OSI model layers]
-</p>
-            `
-          },
-          {
-            id: 'net_7',
-            title: 'Aula 7: Endereçamento IP e Sistema DNS',
-            content: `
-              <h4>Identificação Absoluta</h4>
-              <p>O IPv4 (ex: 192.168.1.1) é a sua morada lógica perante o roteador. O servidor DNS converte as sequências numéricas incompreensíveis (como o IP do Google) em letras simples de memorizar. A exatidão deste serviço viabiliza a internet como conhecemos.</p>
-            `
-          },
-          {
-            id: 'net_8',
-            title: 'Aula 8: Diferença entre Roteamento e Switches',
-            content: `
-              <h4>Comunicação LAN e WAN</h4>
-              <p>Um Switch liga computadores vizinhos no mesmo edifício em obediência estrita à camada de Enlace. Um Roteador destina e avalia qual a estrada mais veloz (Rota) para expelir a informação ao lado externo global.</p>
-            `
-          },
-          {
-            id: 'net_9',
-            title: 'Aula 9: Criptografia Fundamental e Uso de VPNs',
-            content: `
-              <h4>A Barreira Protetiva</h4>
-              <p>O uso de redes gratuitas de praças públicas atesta perigo imediato. As "Virtual Private Networks" estabelecem um duto encouraçado, garantindo o sigilo indevassável da informação financeira transportada pelo ar.</p>
-            `
-          },
-          {
-            id: 'net_10',
-            title: 'Aula 10: Segurança Prática em Redes Sem Fio',
-            content: `
-              <h4>Vigilância Constante</h4>
-              <p>A criptografia legada WEP foi estilhaçada anos atrás. É exigência irrevogável configurar seus roteadores utilizando o protocolo WPA2 ou WPA3, e vedar categoricamente o acesso do painel de administração via internet externa.</p>
-            `
-          }
+          { id: 'net_1', title: 'Aula 1: Internet vs Web', content: '<p><strong>Internet</strong> é uma rede mundial de cabos, roteadores e computadores.</p><p><strong>Web</strong> é o conjunto de sites que você acessa pela internet.</p><p>Exemplo: quando você abre o navegador (Chrome, Edge, Firefox) e entra em um site, você está usando a Web através da Internet.</p>' },
+          { id: 'net_2', title: 'Aula 2: O que é Wi-Fi?', content: '<p><strong>Wi‑Fi</strong> é a tecnologia que permite conectar à internet sem fios, usando ondas de rádio.</p><p>Você precisa de:</p><ul><li>Um roteador Wi‑Fi.</li><li>Uma rede com nome (SSID) e senha.</li></ul><p>Prática: no celular ou notebook, procure o ícone de Wi‑Fi, escolha a rede correta, digite a senha e conecte.</p>' },
+          { id: 'net_3', title: 'Aula 3: E-mail Profissional', content: '<p>O <strong>e-mail</strong> é seu endereço digital. Para usar de forma profissional:</p><ul><li>Use um endereço com seu nome, evitando apelidos.</li><li>Escreva assunto claro (por exemplo: "Envio de Documentos").</li><li>Seja educado e direto.</li></ul>' },
+          { id: 'net_4', title: 'Aula 4: Segurança Online', content: '<p>Algumas ameaças comuns:</p><ul><li><strong>Phishing:</strong> e-mails falsos que pedem seus dados.</li><li><strong>Links suspeitos:</strong> podem levar a sites maliciosos.</li></ul><p>Boas práticas:</p><ul><li>Nunca informe senha em sites estranhos.</li><li>Verifique se o endereço começa com <strong>https://</strong>.</li><li>Desconfie de mensagens oferecendo dinheiro fácil.</li></ul>' },
+          { id: 'net_5', title: 'Aula 5: A Nuvem (Cloud)', content: '<p>Guardar arquivos "na nuvem" (Google Drive, OneDrive, iCloud) significa salvá-los em servidores na internet.</p><p>Vantagens:</p><ul><li>Acessar documentos de qualquer lugar.</li><li>Ter cópia de segurança se o computador quebrar.</li><li>Compartilhar arquivos facilmente com outras pessoas.</li></ul>' },
+          { id: 'net_6', title: 'Aula 6: Motores de Busca', content: '<p>A pesquisa eficaz no Google é vital. Use aspas para precisão. O aprendizado da programação nasce na capacidade férrea de pesquisar erros.</p>' },
+          { id: 'net_7', title: 'Aula 7: Protocolo HTTPS', content: '<p>Verifique sempre a presença do "S" de Seguro no endereço de sites. Transações sem ele permitem captura ilícita dos seus dígitos.</p>' },
+          { id: 'net_8', title: 'Aula 8: Boas Práticas em Redes Sociais', content: '<p>As mídias expõem o fútil. Domine a própria língua, imponha limites de visualização e expurgue companhias irrelevantes à sua evolução.</p>' },
+          { id: 'net_9', title: 'Aula 9: VPN (Redes Privadas)', content: '<p>Conexões em Wi-Fi de hotéis exigem VPN, um túnel protegido que impede a visão alheia sobre seus envios de dados e mensagens.</p>' },
+          { id: 'net_10', title: 'Aula 10: Roteadores Básico', content: '<p>A caixa plástica com antenas na sua casa. Aprender a reiniciá-lo periodicamente limpa o congestionamento das conexões sobrecarregadas.</p>' }
         ]
       },
       'escritorio': {
-        title: "Aplicativos de Escritório",
-        description: "Uso de programas como Microsoft Word, Excel e PowerPoint para tarefas do dia a dia.",
+        title: "Aplicativos de Escritório", description: "10 Aulas: Produção textual e controle em planilhas.",
         lessons: [
-          {
-            id: 'app_1',
-            title: 'Aula 1: Editor de Texto (Word)',
-            content: `
-              <p>No <strong>Word</strong> você pode criar currículos, cartas, trabalhos escolares e muito mais.</p>
-              <p>Elementos básicos:</p>
-              <ul>
-                <li>Fonte (tipo de letra) e tamanho.</li>
-                <li>Negrito, Itálico, Sublinhado.</li>
-                <li>Alinhamento: esquerda, centralizado, direita, justificado.</li>
-              </ul>
-            `
-          },
-          {
-            id: 'app_2',
-            title: 'Aula 2: Planilhas (Excel)',
-            content: `
-              <p>O <strong>Excel</strong> serve para criar tabelas e fazer cálculos automáticos.</p>
-              <p>Você organiza dados em <strong>linhas</strong> e <strong>colunas</strong> (células).</p>
-              <p>Exemplo de fórmula:</p>
-              <ul>
-                <li><code>=SOMA(A1:A5)</code> soma os valores de A1 até A5.</li>
-              </ul>
-            `
-          },
-          {
-            id: 'app_3',
-            title: 'Aula 3: Apresentações (PowerPoint)',
-            content: `
-              <p>O <strong>PowerPoint</strong> cria apresentações em slides, com textos, imagens e gráficos.</p>
-              <p>Dicas:</p>
-              <ul>
-                <li>Use poucos textos em cada slide.</li>
-                <li>Use imagens e tópicos (bullet points).</li>
-              </ul>
-            `
-          },
-          {
-            id: 'app_4',
-            title: 'Aula 4: PDF e Formatos',
-            content: `
-              <p>Salvar como <strong>PDF</strong> é útil quando você quer enviar um documento sem que outras pessoas mudem o conteúdo facilmente.</p>
-              <p>Outros formatos:</p>
-              <ul>
-                <li><strong>DOCX:</strong> arquivo de texto editável do Word.</li>
-                <li><strong>XLSX:</strong> planilha do Excel.</li>
-                <li><strong>PPTX:</strong> apresentação do PowerPoint.</li>
-              </ul>
-            `
-          },
-          {
-            id: 'app_5',
-            title: 'Aula 5: Organização Digital',
-            content: `
-              <p>Organizar arquivos por pastas e nomes claros ajuda a encontrar tudo com facilidade.</p>
-              <p>Exemplo:</p>
-              <ul>
-                <li>Pasta: <em>Trabalho</em> &gt; Subpasta: <em>2025</em> &gt; arquivos nomeados como <em>Relatorio_Janeiro_2025.docx</em>.</li>
-              </ul>
-            `
-          },
-          {
-            id: 'app_6',
-            title: 'Aula 6: Macros e Automatização Repetitiva (Excel)',
-            content: `
-              <h4>Redução do Fútil</h4>
-              <p>No MS Excel, tarefas metódicas executadas infinitamente podem ser gravadas ou programadas em linguagem VBA. Automatizar exige precisão lógica, poupando centenas de horas humanas de digitação manual extenuante.</p>
-            `
-          },
-          {
-            id: 'app_7',
-            title: 'Aula 7: Mala Direta e Relatórios Escaláveis (Word)',
-            content: `
-              <h4>A Lógica do Fichamento</h4>
-              <p>Vincular planilhas contendo informações variáveis a modelos base de ofícios gerará centenas de documentos em fração de segundos. A técnica de Mala Direta consagra a ordem processual no ambiente corporativo.</p>
-            `
-          },
-          {
-            id: 'app_8',
-            title: 'Aula 8: Tipografia e Design Sóbrio (PPT)',
-            content: `
-              <h4>O Fim da Distração</h4>
-              <p>Uma apresentação exige o minimalismo. Evitem-se contrastes de fundo dolorosos aos olhos. Utilize fontes sem serifa e obedeça ao alinhamento de grades (grids) invisíveis na lousa eletrônica.</p>
-            `
-          },
-          {
-            id: 'app_9',
-            title: 'Aula 9: Plataformas de Colaboração (Docs e Sheets)',
-            content: `
-              <h4>O Labor Compartilhado</h4>
-              <p>O Google Workspace rompe as amarras do desktop limitante. Permite a supervisão rigorosa do Professor que enxerga cada letra teclada na nuvem em tempo real e reverte falhas catastróficas por intermédio do Histórico de Versões.</p>
-            `
-          },
-          {
-            id: 'app_10',
-            title: 'Aula 10: Rigor Acadêmico e Formatação ABNT',
-            content: `
-              <h4>A Exigência Escrita</h4>
-              <p>Entregar materiais e redações carentes do recuo exigido de 1,25 cm e das margens de 3/2 cm expõe desleixo insuportável na academia universitária. Obedecer às réguas de formato dita a maturidade do intelecto.</p>
-            `
-          }
+          { id: 'app_1', title: 'Aula 1: Editor de Texto (Word)', content: '<p>No <strong>Word</strong> você pode criar currículos, cartas, trabalhos escolares e muito mais.</p><p>Elementos básicos:</p><ul><li>Fonte (tipo de letra) e tamanho.</li><li>Negrito, Itálico, Sublinhado.</li><li>Alinhamento: esquerda, centralizado, direita, justificado.</li></ul>' },
+          { id: 'app_2', title: 'Aula 2: Planilhas (Excel)', content: '<p>O <strong>Excel</strong> serve para criar tabelas e fazer cálculos automáticos.</p><p>Você organiza dados em <strong>linhas</strong> e <strong>colunas</strong> (células).</p><p>Exemplo de fórmula:</p><ul><li><code>=SOMA(A1:A5)</code> soma os valores de A1 até A5.</li></ul>' },
+          { id: 'app_3', title: 'Aula 3: Apresentações (PowerPoint)', content: '<p>O <strong>PowerPoint</strong> cria apresentações em slides, com textos, imagens e gráficos.</p><p>Dicas:</p><ul><li>Use poucos textos em cada slide.</li><li>Use imagens e tópicos (bullet points).</li></ul>' },
+          { id: 'app_4', title: 'Aula 4: PDF e Formatos', content: '<p>Salvar como <strong>PDF</strong> é útil quando você quer enviar um documento sem que outras pessoas mudem o conteúdo facilmente.</p><p>Outros formatos:</p><ul><li><strong>DOCX:</strong> arquivo de texto editável do Word.</li><li><strong>XLSX:</strong> planilha do Excel.</li><li><strong>PPTX:</strong> apresentação do PowerPoint.</li></ul>' },
+          { id: 'app_5', title: 'Aula 5: Organização Digital', content: '<p>Organizar arquivos por pastas e nomes claros ajuda a encontrar tudo com facilidade.</p><p>Exemplo:</p><ul><li>Pasta: <em>Trabalho</em> &gt; Subpasta: <em>2025</em> &gt; arquivos nomeados como <em>Relatorio_Janeiro_2025.docx</em>.</li></ul>' },
+          { id: 'app_6', title: 'Aula 6: Formatação Condicional no Excel', content: '<p>Pintar células automaticamente se estiverem negativas (em vermelho) garante alertas visuais fundamentais aos administradores.</p>' },
+          { id: 'app_7', title: 'Aula 7: Gráficos Essenciais', content: '<p>Transformar pilhas de números num gráfico de barras eleva uma argumentação em qualquer apresentação.</p>' },
+          { id: 'app_8', title: 'Aula 8: Transições no PPT', content: '<p>Evite pirotecnias. A sobriedade deve pautar a transição entre as telas para não distrair a mente dos seus superiores.</p>' },
+          { id: 'app_9', title: 'Aula 9: O Formato PDF na Prática', content: '<p>Sempre envie currículos e documentos oficiais exclusivamente neste formato fechado para preservar suas formatações originais e integridade.</p>' },
+          { id: 'app_10', title: 'Aula 10: Soluções em Nuvem', content: '<p>Ferramentas do Google Docs permitem escritas em coautoria na nuvem. Entenda que não depender estritamente da Microsoft expande seus horizontes.</p>' }
         ]
       },
       'android': {
-        title: "Desenvolvimento Android",
-        description: "Aprenda a usar e criar aplicativos Android do básico ao avançado.",
+        title: "Desenvolvimento Android", description: "10 Aulas: Uso e programação mobile fundamental.",
         lessons: [
-          {
-            id: 'droid_0',
-            title: 'Aula 1: Primeiros Passos no Android (Entrando no Sistema)',
-            content: `
-              <h4>Teoria: Entrando no Sistema</h4>
-              <p>Ao ligar um celular Android novo, você precisa passar pela tela de configuração inicial e depois configurar uma <strong>Conta Google</strong> (Gmail). Essa conta conecta você à Play Store para baixar aplicativos.</p>
-              <p>Para desbloquear a tela, você pode usar:</p>
-              <ul>
-                <li>Senha numérica (PIN).</li>
-                <li>Desenho (padrão) na tela.</li>
-                <li>Impressão digital (sensor biométrico).</li>
-              </ul>
-              <h4>Prática: Passo a passo</h4>
-              <ol>
-                <li>Pressione e segure o botão de ligar até o celular vibrar ou acender.</li>
-                <li>Na primeira vez, escolha o idioma (Português Brasil) e conecte ao Wi‑Fi.</li>
-                <li>Entre com seu email do Gmail e senha para configurar a <strong>Conta Google</strong>.</li>
-                <li>Defina um PIN ou padrão para proteger o aparelho.</li>
-              </ol>
-            `
-          },
-          {
-            id: 'droid_1',
-            title: 'Aula 2: A Interface Android',
-            content: `
-              <p>Na tela inicial do Android você encontra:</p>
-              <ul>
-                <li><strong>Barra de status:</strong> mostra hora, bateria e sinal.</li>
-                <li><strong>Ícones de aplicativos:</strong> atalhos para abrir apps.</li>
-                <li><strong>Barra de navegação:</strong> botões de voltar, tela inicial e apps recentes (em alguns modelos).</li>
-              </ul>
-              <p>Se você deslizar o dedo de cima para baixo, abre a <strong>barra de notificações</strong>, com atalhos para Wi‑Fi, Bluetooth, modo avião, etc.</p>
-            `
-          },
-          {
-            id: 'droid_2',
-            title: 'Aula 3: Instalando Apps',
-            content: `
-              <p>A instalação segura de aplicativos é feita pela <strong>Google Play Store</strong>.</p>
-              <ol>
-                <li>Abra a Play Store.</li>
-                <li>Pesquise pelo nome do aplicativo (por exemplo, "WhatsApp").</li>
-                <li>Verifique se o desenvolvedor parece confiável (WhatsApp LLC, Google LLC, etc.).</li>
-                <li>Clique em <strong>Instalar</strong>.</li>
-              </ol>
-              <p>Evite instalar apps de fontes desconhecidas para não colocar seu aparelho em risco.</p>
-            `
-          },
-          {
-            id: 'droid_3',
-            title: 'Aula 4: Introdução ao Desenvolvimento',
-            content: `
-              <p>Para criar apps Android você geralmente usa:</p>
-              <ul>
-                <li><strong>Android Studio:</strong> programa oficial de desenvolvimento.</li>
-                <li><strong>Linguagem Kotlin</strong> (recomendada) ou Java.</li>
-              </ul>
-              <p>Você cria telas (layouts) e escreve código que responde a toques e ações do usuário.</p>
-            `
-          },
-          {
-            id: 'droid_4',
-            title: 'Aula 5: Criando seu Primeiro App',
-            content: `
-              <p>Um primeiro app simples pode ter:</p>
-              <ul>
-                <li>Uma tela com um texto "Olá Mundo".</li>
-                <li>Um botão que, ao ser clicado, muda o texto.</li>
-              </ul>
-              <p>No Android Studio, você cria um novo projeto, escolhe "Empty Activity" e edita o layout da tela arrastando componentes.</p>
-            `
-          },
-          {
-            id: 'droid_5',
-            title: 'Aula 6: A Arquitetura do Android OS',
-            content: `
-              <h4>Base sólida no Linux</h4>
-              <p>Afastemos a confusão. O Android abriga-se sob um kernel Linux enxuto. O maquinário virtual Dalvik (substituído pela ART - Android Runtime) converte seu código Kotlin para instruções compreensíveis à minúscula CPU do dispositivo.</p>
-            `
-          },
-          {
-            id: 'droid_6',
-            title: 'Aula 7: Intents e Transições Fluidas',
-            content: `
-              <h4>Mensageiros de Ação</h4>
-              <p>Para sair de uma tela (Activity) em direção à outra, envia-se uma "Intent" — a qual manifesta sua pura intenção sistêmica. Pode-se ordenar a abertura de câmeras ou páginas da web exigindo rigor gramatical nas requisições.</p>
-            `
-          },
-          {
-            id: 'droid_7',
-            title: 'Aula 8: Consumo Ordenado de APIs Externas',
-            content: `
-              <h4>Busca Remota</h4>
-              <p>Um aparelho sem acesso a dados externos murcha. Ensinaremos a usar bibliotecas (Retrofit) para pescar arquivos em formato JSON. Os processos devem ocorrer de maneira secundária (assíncrona) para não travar a visualização (thread principal).</p>
-            `
-          },
-          {
-            id: 'droid_8',
-            title: 'Aula 9: Persistência Constante (Room SQLite)',
-            content: `
-              <h4>Bancos de Dados Locais</h4>
-              <p>Tampouco o sistema perdoará lapsos de memória pela escassez de conexão móvel. O armazenamento relacional através da biblioteca Room dita tabelas lógicas firmemente atreladas, imunes ao descarte fortuito.</p>
-            `
-          },
-          {
-            id: 'droid_9',
-            title: 'Aula 10: Compilação APK e Play Console',
-            content: `
-              <h4>A Entrega Austera</h4>
-              <p>Programadores inaptos sofrem bloqueios. A emissão final exige a criação do Android App Bundle (AAB), verificado sob as rígidas assinaturas de criptografia do desenvolvedor para ser finalmente julgado nos portões da Google Play.</p>
-            `
-          }
+          { id: 'droid_0', title: 'Aula 1: Primeiros Passos no Android (Entrando no Sistema)', content: '<h4>Teoria: Entrando no Sistema</h4><p>Ao ligar um celular Android novo, você precisa passar pela tela de configuração inicial e depois configurar uma <strong>Conta Google</strong> (Gmail). Essa conta conecta você à Play Store para baixar aplicativos.</p><p>Para desbloquear a tela, você pode usar:</p><ul><li>Senha numérica (PIN).</li><li>Desenho (padrão) na tela.</li><li>Impressão digital (sensor biométrico).</li></ul><h4>Prática: Passo a passo</h4><ol><li>Pressione e segure o botão de ligar até o celular vibrar ou acender.</li><li>Na primeira vez, escolha o idioma (Português Brasil) e conecte ao Wi‑Fi.</li><li>Entre com seu email do Gmail e senha para configurar a <strong>Conta Google</strong>.</li><li>Defina um PIN ou padrão para proteger o aparelho.</li></ol>' },
+          { id: 'droid_1', title: 'Aula 2: A Interface Android', content: '<p>Na tela inicial do Android você encontra:</p><ul><li><strong>Barra de status:</strong> mostra hora, bateria e sinal.</li><li><strong>Ícones de aplicativos:</strong> atalhos para abrir apps.</li><li><strong>Barra de navegação:</strong> botões de voltar, tela inicial e apps recentes (em alguns modelos).</li></ul><p>Se você deslizar o dedo de cima para baixo, abre a <strong>barra de notificações</strong>, com atalhos para Wi‑Fi, Bluetooth, modo avião, etc.</p>' },
+          { id: 'droid_2', title: 'Aula 3: Instalando Apps', content: '<p>A instalação segura de aplicativos é feita pela <strong>Google Play Store</strong>.</p><ol><li>Abra a Play Store.</li><li>Pesquise pelo nome do aplicativo (por exemplo, "WhatsApp").</li><li>Verifique se o desenvolvedor parece confiável (WhatsApp LLC, Google LLC, etc.).</li><li>Clique em <strong>Instalar</strong>.</li></ol><p>Evite instalar apps de fontes desconhecidas para não colocar seu aparelho em risco.</p>' },
+          { id: 'droid_3', title: 'Aula 4: Introdução ao Desenvolvimento', content: '<p>Para criar apps Android você geralmente usa:</p><ul><li><strong>Android Studio:</strong> programa oficial de desenvolvimento.</li><li><strong>Linguagem Kotlin</strong> (recomendada) ou Java.</li></ul><p>Você cria telas (layouts) e escreve código que responde a toques e ações do usuário.</p>' },
+          { id: 'droid_4', title: 'Aula 5: Criando seu Primeiro App', content: '<p>Um primeiro app simples pode ter:</p><ul><li>Uma tela com um texto "Olá Mundo".</li><li>Um botão que, ao ser clicado, muda o texto.</li></ul><p>No Android Studio, você cria um novo projeto, escolhe "Empty Activity" e edita o layout da tela arrastando componentes.</p>' },
+          { id: 'droid_5', title: 'Aula 6: Permissões Ocultas', content: '<p>O sistema lhe pergunta se deseja partilhar câmera e GPS. Diga não a todos os aplicativos irrelevantes. Valorize sua intimidade física e virtual.</p>' },
+          { id: 'droid_6', title: 'Aula 7: Backups e Atualizações', content: '<p>Habilite o Backup automático à noite, usando rede Wi-Fi, de modo silencioso enquanto recarrega a energia do dispositivo.</p>' },
+          { id: 'droid_7', title: 'Aula 8: Telas XML', content: '<p>O Design é projetado num formato rígido de marcações. Compreender a geometria das "Constraint Layouts" formará a estética da sua tela.</p>' },
+          { id: 'droid_8', title: 'Aula 9: Ciclo de Vida Android', content: '<p>Criar, pausar, destruir. Ao ignorar o momento em que um app vai para segundo plano, cria-se consumo abusivo da carga energética.</p>' },
+          { id: 'droid_9', title: 'Aula 10: Geração do Arquivo APK', content: '<p>Assinatura digital e o empacotamento em APK ou AAB. Trâmites frios e indispensáveis para enviar sua criação para o Google escrutinar.</p>' }
         ]
       },
       'ios': {
-        title: "Desenvolvimento iOS",
-        description: "Aprenda a usar e criar aplicativos iOS do básico ao avançado.",
+        title: "Desenvolvimento iOS", description: "10 Aulas: Dominando o ecossistema e programação Apple.",
         lessons: [
-          {
-            id: 'ios_0',
-            title: 'Aula 1: Primeiros Passos no iPhone (Entrando no Sistema)',
-            content: `
-              <h4>Teoria: Entrando no Sistema</h4>
-              <p>Para usar um iPhone, você configura um <strong>Apple ID</strong>, que é sua conta da Apple. Ela sincroniza contatos, fotos, notas e compras de apps via iCloud.</p>
-              <p>Para desbloquear o iPhone, você pode usar:</p>
-              <ul>
-                <li><strong>Face ID:</strong> reconhecimento facial.</li>
-                <li><strong>Touch ID:</strong> impressão digital.</li>
-                <li><strong>Código numérico:</strong> senha com números.</li>
-              </ul>
-              <h4>Prática: Passo a passo</h4>
-              <ol>
-                <li>Mantenha pressionado o botão lateral até aparecer o logotipo da Apple.</li>
-                <li>Siga as telas de configuração: idioma, região, Wi‑Fi.</li>
-                <li>Entre com seu Apple ID ou crie um novo.</li>
-                <li>Configure o Face ID/Touch ID e um código numérico seguro.</li>
-              </ol>
-            `
-          },
-          {
-            id: 'ios_1',
-            title: 'Aula 2: O Sistema iOS',
-            content: `
-              <p>O iOS é conhecido por ser um sistema seguro e otimizado para aparelhos da Apple.</p>
-              <p>Algumas características:</p>
-              <ul>
-                <li>Navegação por gestos (deslizar para cima, para o lado).</li>
-                <li>Central de Controle (acesso rápido a Wi‑Fi, brilho, lanterna).</li>
-                <li>Central de Notificações (ao deslizar de cima para baixo).</li>
-              </ul>
-            `
-          },
-          {
-            id: 'ios_2',
-            title: 'Aula 3: App Store',
-            content: `
-              <p>A <strong>App Store</strong> é a loja oficial de aplicativos do iPhone.</p>
-              <ol>
-                <li>Abra a App Store.</li>
-                <li>Pesquise o aplicativo desejado.</li>
-                <li>Verifique a reputação (estrelas, avaliações, desenvolvedor).</li>
-                <li>Clique em <strong>Obter</strong> e confirme com Face ID/Touch ID ou senha.</li>
-              </ol>
-              <p>Somente instale apps que você confia, para manter sua segurança.</p>
-            `
-          },
-          {
-            id: 'ios_3',
-            title: 'Aula 4: Intro ao Desenvolvimento iOS',
-            content: `
-              <p>Para criar apps para iPhone você usa:</p>
-              <ul>
-                <li><strong>Xcode:</strong> programa de desenvolvimento da Apple, disponível para Mac.</li>
-                <li><strong>Linguagem Swift:</strong> moderna, segura e fácil de ler.</li>
-              </ul>
-              <p>Você pode criar interfaces com <strong>SwiftUI</strong>, descrevendo a tela com código.</p>
-            `
-          },
-          {
-            id: 'ios_4',
-            title: 'Aula 5: SwiftUI Básico',
-            content: `
-              <p>Exemplo simples de código SwiftUI que mostra um texto:</p>
-              <pre><code>struct ContentView: View {
-      var body: some View {
-          Text("Olá Mundo")
-              .padding()
-      }
-  }</code></pre>
-              <p>Esse código define uma tela com a mensagem "Olá Mundo" centralizada e com espaçamento.</p>
-            `
-          },
-          {
-            id: 'ios_5',
-            title: 'Aula 6: Arquitetura Estanque (Sandboxing)',
-            content: `
-              <h4>Defesa e Proteção Própria</h4>
-              <p>O iOS enclausura cada App dentro do seu próprio cofre intransponível. Esta técnica arquitetônica elimina as contaminações colaterais comuns de outros sistemas impuros.</p>
-            `
-          },
-          {
-            id: 'ios_6',
-            title: 'Aula 7: O Ciclo de Vida Irreversível do iOS',
-            content: `
-              <h4>Obediência à Memória</h4>
-              <p>Os eventos sistêmicos (Foreground, Background, Terminated) requerem a ordem para pausar os timers desnecessários imediatamente; caso contrário, a Apple fulmina o processo em andamento para salvaguardar a bateria.</p>
-            `
-          },
-          {
-            id: 'ios_7',
-            title: 'Aula 8: Navegação Superior (NavigationStack)',
-            content: `
-              <h4>Pilhas Visuais</h4>
-              <p>A SwiftUI implementou um empilhamento metódico de ecrãs. Não se constrói labirintos para o usuário final, exijo que você domine as rotas do tipo push e pop logicamente assentadas.</p>
-            `
-          },
-          {
-            id: 'ios_8',
-            title: 'Aula 9: O Alicerce CoreData e SwiftData',
-            content: `
-              <h4>Permanência no Mac OS e iOS</h4>
-              <p>Guardar objetos gráficos em disco sem necessitar converter linhas SQL puras. O mapeamento relacional interno do iPhone é tão sublime quanto exigente em sua curva rigorosa de aprendizado.</p>
-            `
-          },
-          {
-            id: 'ios_9',
-            title: 'Aula 10: Validações TestFlight',
-            content: `
-              <h4>O Purgatório Apple</h4>
-              <p>O TestFlight aloja testadores reais contidos em barreiras beta. O software impuro com engasgos sequer avança os degraus alfandegários para atingir a App Store final dos consumidores abertos.</p>
-            `
-          }
+          { id: 'ios_0', title: 'Aula 1: Primeiros Passos no iPhone (Entrando no Sistema)', content: '<h4>Teoria: Entrando no Sistema</h4><p>Para usar um iPhone, você configura um <strong>Apple ID</strong>, que é sua conta da Apple. Ela sincroniza contatos, fotos, notas e compras de apps via iCloud.</p><p>Para desbloquear o iPhone, você pode usar:</p><ul><li><strong>Face ID:</strong> reconhecimento facial.</li><li><strong>Touch ID:</strong> impressão digital.</li><li><strong>Código numérico:</strong> senha com números.</li></ul><h4>Prática: Passo a passo</h4><ol><li>Mantenha pressionado o botão lateral até aparecer o logotipo da Apple.</li><li>Siga as telas de configuração: idioma, região, Wi‑Fi.</li><li>Entre com seu Apple ID ou crie um novo.</li><li>Configure o Face ID/Touch ID e um código numérico seguro.</li></ol>' },
+          { id: 'ios_1', title: 'Aula 2: O Sistema iOS', content: '<p>O iOS é conhecido por ser um sistema seguro e otimizado para aparelhos da Apple.</p><p>Algumas características:</p><ul><li>Navegação por gestos (deslizar para cima, para o lado).</li><li>Central de Controle (acesso rápido a Wi‑Fi, brilho, lanterna).</li><li>Central de Notificações (ao deslizar de cima para baixo).</li></ul>' },
+          { id: 'ios_2', title: 'Aula 3: App Store', content: '<p>A <strong>App Store</strong> é a loja oficial de aplicativos do iPhone.</p><ol><li>Abra a App Store.</li><li>Pesquise o aplicativo desejado.</li><li>Verifique a reputação (estrelas, avaliações, desenvolvedor).</li><li>Clique em <strong>Obter</strong> e confirme com Face ID/Touch ID ou senha.</li></ol><p>Somente instale apps que você confia, para manter sua segurança.</p>' },
+          { id: 'ios_3', title: 'Aula 4: Intro ao Desenvolvimento iOS', content: '<p>Para criar apps para iPhone você usa:</p><ul><li><strong>Xcode:</strong> programa de desenvolvimento da Apple, disponível para Mac.</li><li><strong>Linguagem Swift:</strong> moderna, segura e fácil de ler.</li></ul><p>Você pode criar interfaces com <strong>SwiftUI</strong>, descrevendo a tela com código.</p>' },
+          { id: 'ios_4', title: 'Aula 5: SwiftUI Básico', content: '<p>Exemplo simples de código SwiftUI que mostra um texto:</p><pre><code>struct ContentView: View {\n      var body: some View {\n          Text("Olá Mundo")\n              .padding()\n      }\n  }</code></pre><p>Esse código define uma tela com a mensagem "Olá Mundo" centralizada e com espaçamento.</p>' },
+          { id: 'ios_5', title: 'Aula 6: O Ecossistema Fechado', content: '<p>O iPhone se comunica perfeitamente com MacBooks e iPads. Compreenda a sincronização fluida através da tecnologia AirDrop e iCloud nativo.</p>' },
+          { id: 'ios_6', title: 'Aula 7: Organização em Pastas', content: '<p>Agrupe aplicativos bancários numa única folha oculta da tela; preserve a sobriedade da tela primeira apenas com utilitários de sistema.</p>' },
+          { id: 'ios_7', title: 'Aula 8: Simulação e Dispositivos', content: '<p>Aplicativos devem ser exaustivamente testados no simulador de iPhones do Xcode para verificar seu comportamento visual em telas de tamanhos diferentes.</p>' },
+          { id: 'ios_8', title: 'Aula 9: Design Guidelines (HIG)', content: '<p>A Apple exige estritamente o respeito ao seu Human Interface Guidelines. O design deve ser óbvio, focado no conteúdo e limpo de poluição.</p>' },
+          { id: 'ios_9', title: 'Aula 10: Testes no TestFlight', content: '<p>Ambiente isolado para testadores eleitos. A prova derradeira para consertar instabilidades antes do doloroso escrutínio da equipe censora da Apple.</p>' }
         ]
       },
       'mobile_revisao': {
-        title: "Revisão Android & iOS",
-        description: "Matéria de revisão e aprofundamento prático de uso dos sistemas Android e iOS do básico ao avançado.",
+        title: "Revisão Android & iOS", description: "10 Aulas: Revisão prática de sistemas mobile.",
         lessons: [
-          {
-            id: 'mob_1',
-            title: 'Aula 1: Revisão – Entrar no Android e iOS',
-            content: `
-              <h4>Teoria</h4>
-              <p>Relembrando: para usar Android e iOS, é essencial saber ligar, desbloquear e acessar a conta principal.</p>
-              <ul>
-                <li>No Android: ligar, inserir PIN/padrão, conectar ao Wi‑Fi, entrar com <strong>Conta Google</strong>.</li>
-                <li>No iOS: ligar, desbloquear com Face ID/Touch ID e entrar com <strong>Apple ID</strong>.</li>
-              </ul>
-            `
-          },
-          {
-            id: 'mob_2',
-            title: 'Aula 2: Segurança – Senhas, PIN, biometria',
-            content: `
-              <h4>Teoria</h4>
-              <p>Android e iOS permitem usar vários métodos de bloqueio:</p>
-              <ul>
-                <li>PIN (4 ou 6 dígitos).</li>
-                <li>Padrão (desenho na tela – Android).</li>
-                <li>Biometria (impressão digital ou rosto).</li>
-              </ul>
-              <p>Recomendação: use uma senha que só você saiba, não compartilhe com estranhos e evite senhas muito óbvias como 1234 ou data de nascimento.</p>
-            `
-          },
-          {
-            id: 'mob_3',
-            title: 'Aula 3: Instalando e removendo apps',
-            content: `
-              <p>Instalar apps novos é simples, mas é importante remover os que você não usa para liberar espaço e evitar bagunça.</p>
-              <p><strong>No Android:</strong> pressione e segure o ícone de um app e escolha “Desinstalar”.</p>
-              <p><strong>No iOS:</strong> mantenha o dedo sobre o ícone e toque em “Remover App”.</p>
-            `
-          },
-          {
-            id: 'mob_4',
-            title: 'Aula 4: Backup e Sincronização',
-            content: `
-              <p>Ativar backups em nuvem é essencial para não perder dados se o aparelho for perdido ou roubado.</p>
-              <ul>
-                <li>Android: Configurações &gt; Google &gt; Backup.</li>
-                <li>iOS: Ajustes &gt; [Seu Nome] &gt; iCloud &gt; Backup do iCloud.</li>
-              </ul>
-            `
-          },
-          {
-            id: 'mob_5',
-            title: 'Aula 5: Boas práticas de uso diário',
-            content: `
-              <p>Dicas para manter o aparelho rápido e seguro:</p>
-              <ul>
-                <li>Evite instalar muitos apps desnecessários.</li>
-                <li>Mantenha o sistema atualizado.</li>
-                <li>Use Wi‑Fi confiável e evite redes públicas para operações bancárias.</li>
-              </ul>
-            `
-          },
-          {
-            id: 'mob_6',
-            title: 'Aula 6: Gestão de Bateria de Lítio (Mitos Anulados)',
-            content: `
-              <h4>Cargas Racionais</h4>
-              <p>O encerramento forçado diário contínuo de aplicativos consome carga avassaladora ao serem despertados novamente pelas entranhas do sistema. Confie no núcleo lógico e apenas efetue carregamentos diários sem zerar por total os seus íons de lítio.</p>
-            `
-          },
-          {
-            id: 'mob_7',
-            title: 'Aula 7: Controle de Privacidade Geográfica e Rastreamento',
-            content: `
-              <h4>Visão Estrita</h4>
-              <p>A revisão atenta na aba "Localização". Permita rastreamento aos mapas, porém silencie eternamente jogos casuais que tentam aferir onde seu corpo físico pisa a cada instante.</p>
-            `
-          },
-          {
-            id: 'mob_8',
-            title: 'Aula 8: O Modo de Segurança Operacional',
-            content: `
-              <h4>Análise Tática</h4>
-              <p>No Android, o acionamento via pressões contínuas no Power elenca um ambiente estrito que inviabiliza as falhas impulsionadas por aplicativos fúteis terceirizados. É a forma acadêmica de eliminar o agressor lógico.</p>
-            `
-          },
-          {
-            id: 'mob_9',
-            title: 'Aula 9: Atualizações Críticas do Firmware',
-            content: `
-              <h4>Remendos do Sofware Materno</h4>
-              <p>O aparelho pede 1 hora para aplicar correções da fabricante. Acatar à súplica extingue brechas para clonadores virtuais; a letargia em não aceitar arruína todo o dispositivo.</p>
-            `
-          },
-          {
-            id: 'mob_10',
-            title: 'Aula 10: Wipe Completo e Descarte Responsável',
-            content: `
-              <h4>Apagamento Implacável</h4>
-              <p>Entregar a sua máquina gasta às mãos terceiras impõe o formatamento físico absoluto "Factory Reset". Seus remanescentes financeiros ou visuais morrem irreversivelmente.</p>
-            `
-          }
+          { id: 'mob_1', title: 'Aula 1: Revisão – Entrar no Android e iOS', content: '<h4>Teoria</h4><p>Relembrando: para usar Android e iOS, é essencial saber ligar, desbloquear e acessar a conta principal.</p><ul><li>No Android: ligar, inserir PIN/padrão, conectar ao Wi‑Fi, entrar com <strong>Conta Google</strong>.</li><li>No iOS: ligar, desbloquear com Face ID/Touch ID e entrar com <strong>Apple ID</strong>.</li></ul>' },
+          { id: 'mob_2', title: 'Aula 2: Segurança – Senhas, PIN, biometria', content: '<h4>Teoria</h4><p>Android e iOS permitem usar vários métodos de bloqueio:</p><ul><li>PIN (4 ou 6 dígitos).</li><li>Padrão (desenho na tela – Android).</li><li>Biometria (impressão digital ou rosto).</li></ul><p>Recomendação: use uma senha que só você saiba, não compartilhe com estranhos e evite senhas muito óbvias como 1234 ou data de nascimento.</p>' },
+          { id: 'mob_3', title: 'Aula 3: Instalando e removendo apps', content: '<p>Instalar apps novos é simples, mas é importante remover os que você não usa para liberar espaço e evitar bagunça.</p><p><strong>No Android:</strong> pressione e segure o ícone de um app e escolha “Desinstalar”.</p><p><strong>No iOS:</strong> mantenha o dedo sobre o ícone e toque em “Remover App”.</p>' },
+          { id: 'mob_4', title: 'Aula 4: Backup e Sincronização', content: '<p>Ativar backups em nuvem é essencial para não perder dados se o aparelho for perdido ou roubado.</p><ul><li>Android: Configurações &gt; Google &gt; Backup.</li><li>iOS: Ajustes &gt; [Seu Nome] &gt; iCloud &gt; Backup do iCloud.</li></ul>' },
+          { id: 'mob_5', title: 'Aula 5: Boas práticas de uso diário', content: '<p>Dicas para manter o aparelho rápido e seguro:</p><ul><li>Evite instalar muitos apps desnecessários.</li><li>Mantenha o sistema atualizado.</li><li>Use Wi‑Fi confiável e evite redes públicas para operações bancárias.</li></ul>' },
+          { id: 'mob_6', title: 'Aula 6: Otimização de Bateria', content: '<p>Não feche incessantemente aplicativos e não ative modo escuro por falsas promessas de milagres de vida útil. A bateria requer cargas normais sem descarregar totalmente.</p>' },
+          { id: 'mob_7', title: 'Aula 7: Atualizações Forçadas', content: '<p>Sistemas antigos são permeáveis à criminalidade digital; execute updates pendentes agora, e não na manhã de amanhã.</p>' },
+          { id: 'mob_8', title: 'Aula 8: Controle de Notificações', content: '<p>O apito incessante degrada a saúde mental. Cale todo programa de vendas, restrinja o barulho apenas a avisos inquestionavelmente vitais.</p>' },
+          { id: 'mob_9', title: 'Aula 9: Compartilhamentos Vigiados', content: '<p>A partilha de localizações com parentes próximos protege em tempos violentos; limite esse privilégio aos de estrita confiança.</p>' },
+          { id: 'mob_10', title: 'Aula 10: Formatação Fabril', content: '<p>Restauração das Configurações Iniciais em casos de falhas incorrigíveis ou na transação do aparelho a terceiros. Apaga sua memória total do sistema.</p>' }
         ]
       },
       'pix': {
-        title: "PIX e Pagamentos Digitais",
-        description: "Aprenda o que é PIX, como cadastrar chaves, enviar e receber dinheiro com segurança, incluindo pagamentos por QR Code.",
+        title: "PIX e Pagamentos Digitais", description: "10 Aulas de precisão financeira. Chaves PIX, transações e fraudes.",
         lessons: [
-          {
-            id: 'pix_1',
-            title: 'Aula 1: O que é PIX e como funciona',
-            content: `
-              <h4>Teoria: O que é PIX?</h4>
-              <p>O <strong>PIX</strong> é um sistema de pagamentos instantâneos criado pelo Banco Central do Brasil. Ele permite enviar e receber dinheiro em poucos segundos, 24 horas por dia, 7 dias por semana, inclusive feriados.</p>
-              <p>Com o PIX você pode:</p>
-              <ul>
-                <li>Pagar pessoas físicas (amigos, familiares).</li>
-                <li>Pagar lojas e empresas.</li>
-                <li>Transferir dinheiro entre suas próprias contas.</li>
-              </ul>
-              <h4>Vantagens</h4>
-              <ul>
-                <li>Velocidade: o dinheiro cai na hora.</li>
-                <li>Praticidade: basta usar uma <strong>chave PIX</strong> ou QR Code.</li>
-                <li>Custo: em muitos casos é gratuito para pessoa física.</li>
-              </ul>
-            `
-          },
-          {
-            id: 'pix_2',
-            title: 'Aula 2: Como cadastrar chaves PIX',
-            content: `
-              <h4>O que é uma chave PIX?</h4>
-              <p>A <strong>chave PIX</strong> é um apelido para sua conta bancária. Em vez de informar banco, agência e conta, você informa apenas uma chave.</p>
-              <p>Tipos de chave PIX:</p>
-              <ul>
-                <li><strong>CPF/CNPJ</strong></li>
-                <li><strong>E-mail</strong></li>
-                <li><strong>Telefone celular</strong></li>
-                <li><strong>Chave aleatória</strong> (código gerado pelo sistema)</li>
-              </ul>
-              <h4>Passo a passo para cadastrar chave PIX (exemplo geral)</h4>
-              <ol>
-                <li>Abra o aplicativo do seu banco ou carteira digital.</li>
-                <li>No menu, procure por <strong>PIX</strong>.</li>
-                <li>Toque em <strong>Registrar chave</strong> ou <strong>Cadastrar chave</strong>.</li>
-                <li>Escolha o tipo de chave (CPF, e-mail, telefone ou aleatória).</li>
-                <li>Confirme os dados e finalize o cadastro.</li>
-              </ol>
-              <p>Você pode ter várias chaves, mas cada chave só pode estar ligada a <strong>uma conta por vez</strong>.</p>
-            `
-          },
-          {
-            id: 'pix_3',
-            title: 'Aula 3: Como enviar dinheiro para chaves PIX com segurança',
-            content: `
-              <h4>Passo a passo geral para enviar PIX</h4>
-              <ol>
-                <li>Abra o app do seu banco e toque em <strong>PIX</strong>.</li>
-                <li>Escolha <strong>Pagar</strong> ou <strong>Transferir</strong>.</li>
-                <li>Selecione a opção de pagar por <strong>chave PIX</strong>.</li>
-                <li>Digite a chave PIX da pessoa (por exemplo, e-mail ou telefone).</li>
-                <li>Confira o <strong>nome</strong> e <strong>banco</strong> que aparecem na tela.</li>
-                <li>Digite o valor que deseja enviar.</li>
-                <li>Revise todas as informações e confirme com sua senha ou biometria.</li>
-              </ol>
-              <h4>Cuidados importantes</h4>
-              <ul>
-                <li>Sempre confira nome e banco do destinatário antes de confirmar.</li>
-                <li>Se algo parecer estranho, <strong>não conclua</strong> a operação.</li>
-                <li>Nunca faça PIX para desconhecidos que entram em contato por mensagens suspeitas.</li>
-              </ul>
-            `
-          },
-          {
-            id: 'pix_4',
-            title: 'Aula 4: Como fazer pagamento por QR Code PIX',
-            content: `
-              <h4>O que é QR Code PIX?</h4>
-              <p>É um código quadrado (um "quadradinho preto e branco") que, ao ser lido pela câmera do celular, já traz todas as informações do pagamento PIX (conta, valor, descrição).</p>
-              <h4>Tipos de QR Code</h4>
-              <ul>
-                <li><strong>QR Code estático:</strong> normalmente usado por pequenos comércios ou pessoas físicas; pode ter valor fixo ou aberto.</li>
-                <li><strong>QR Code dinâmico:</strong> gerado para cada venda, normalmente em lojas e sistemas maiores.</li>
-              </ul>
-              <h4>Passo a passo para pagar com QR Code</h4>
-              <ol>
-                <li>Abra o app do seu banco e toque em <strong>PIX</strong>.</li>
-                <li>Escolha a opção <strong>Pagar com QR Code</strong>.</li>
-                <li>Aponte a câmera do celular para o QR Code (na tela ou impresso).</li>
-                <li>Espere o app reconhecer o código.</li>
-                <li>Confira o nome do recebedor e o valor.</li>
-                <li>Confirme com sua senha ou biometria.</li>
-              </ol>
-            `
-          },
-          {
-            id: 'pix_5',
-            title: 'Aula 5: Outros meios de fazer PIX e boas práticas',
-            content: `
-              <h4>PIX por “Copia e Cola”</h4>
-              <p>Além de chaves PIX e QR Code, é comum receber um <strong>código PIX copia e cola</strong>, que é uma sequência grande de caracteres.</p>
-              <ol>
-                <li>Toque e segure no código e selecione <strong>Copiar</strong>.</li>
-                <li>No app do banco, vá em PIX &gt; <strong>Colar código copia e cola</strong>.</li>
-                <li>Cole o código, confira os dados e confirme.</li>
-              </ol>
-              <h4>Agendar PIX</h4>
-              <p>Alguns bancos permitem <strong>agendar</strong> um PIX para uma data futura, como pagamento de contas recorrentes.</p>
-              <h4>Limites de valor</h4>
-              <p>Para sua segurança, bancos costumam definir limites de valor para PIX (por dia, por transação e especialmente à noite).</p>
-              <p>Você pode ajustar esses limites nas configurações de segurança do seu app bancário.</p>
-              <h4>Boas práticas de segurança no PIX</h4>
-              <ul>
-                <li>Desconfie de pedidos de PIX feitos por mensagens urgentes de desconhecidos.</li>
-                <li>Não compartilhe prints com QR Code do seu PIX de forma pública.</li>
-                <li>Use apenas aplicativos oficiais do banco e mantenha o celular bloqueado com senha/biometria.</li>
-              </ul>
-            `
-          },
-          {
-            id: 'pix_6',
-            title: 'Aula 6: Mecanismo Especial de Devolução (MED)',
-            content: `
-              <h4>Correções Estritas do Banco Central</h4>
-              <p>O MED foi cravado para reverter golpes fáticos. Exige agilidade do correntista que relata à central do banco imediatamente o evento ilícito na qual despendeu a cota; as instituições cruzam contatos para estagnar e restituir, se houver, o salto retirado.</p>
-            `
-          },
-          {
-            id: 'pix_7',
-            title: 'Aula 7: Cobranças Sistêmicas (PIX Cobrança)',
-            content: `
-              <h4>A Execução de Multas Diárias</h4>
-              <p>O substituto inexorável do boleto contábil. Uma chave dotada de data final com inserção imutável de descontos lógicos e acréscimos severos por procrastinação do devedor.</p>
-            `
-          },
-          {
-            id: 'pix_8',
-            title: 'Aula 8: Integração Técnica via API',
-            content: `
-              <h4>Automatismos Corporativos</h4>
-              <p>Servidores programados não efetuam transferências tocando em vidro (touch). Invocam as credenciais em formato JSON restrito. Todo universitário desenvolvedor de plataformas em e-commerce exigirá este rigor de tráfego.</p>
-            `
-          },
-          {
-            id: 'pix_9',
-            title: 'Aula 9: Rastreabilidade Absoluta',
-            content: `
-              <h4>Ilusão do Anonimato</h4>
-              <p>A transação se exibe contínua aos analistas da Receita. A mentira da conta invisível foi eliminada. A ordem dos impostos não perdoa as lavagens de capitais operantes sob este formato veloz.</p>
-            `
-          },
-          {
-            id: 'pix_10',
-            title: 'Aula 10: Prevenção Severa de Engenharia Social',
-            content: `
-              <h4>A Culpa é de Quem Pressiona Confirma</h4>
-              <p>Fraudes contam unicamente com a leniência cega. O aplicativo não engana. Toda mensagem exigindo remessa pecuniária emergencial impõe uma ligação mandatória; o diálogo verbal imediato destrói a mentira instalada em textos fúteis.</p>
-            `
-          }
+          { id: 'pix_1', title: 'Aula 1: O que é PIX e como funciona', content: '<h4>Teoria: O que é PIX?</h4><p>O <strong>PIX</strong> é um sistema de pagamentos instantâneos criado pelo Banco Central do Brasil. Ele permite enviar e receber dinheiro em poucos segundos, 24 horas por dia, 7 dias por semana, inclusive feriados.</p><p>Com o PIX você pode:</p><ul><li>Pagar pessoas físicas (amigos, familiares).</li><li>Pagar lojas e empresas.</li><li>Transferir dinheiro entre suas próprias contas.</li></ul><h4>Vantagens</h4><ul><li>Velocidade: o dinheiro cai na hora.</li><li>Praticidade: basta usar uma <strong>chave PIX</strong> ou QR Code.</li><li>Custo: em muitos casos é gratuito para pessoa física.</li></ul>' },
+          { id: 'pix_2', title: 'Aula 2: Como cadastrar chaves PIX', content: '<h4>O que é uma chave PIX?</h4><p>A <strong>chave PIX</strong> é um apelido para sua conta bancária. Em vez de informar banco, agência e conta, você informa apenas uma chave.</p><p>Tipos de chave PIX:</p><ul><li><strong>CPF/CNPJ</strong></li><li><strong>E-mail</strong></li><li><strong>Telefone celular</strong></li><li><strong>Chave aleatória</strong> (código gerado pelo sistema)</li></ul><h4>Passo a passo para cadastrar chave PIX (exemplo geral)</h4><ol><li>Abra o aplicativo do seu banco ou carteira digital.</li><li>No menu, procure por <strong>PIX</strong>.</li><li>Toque em <strong>Registrar chave</strong> ou <strong>Cadastrar chave</strong>.</li><li>Escolha o tipo de chave (CPF, e-mail, telefone ou aleatória).</li><li>Confirme os dados e finalize o cadastro.</li></ol><p>Você pode ter várias chaves, mas cada chave só pode estar ligada a <strong>uma conta por vez</strong>.</p>' },
+          { id: 'pix_3', title: 'Aula 3: Como enviar dinheiro para chaves PIX com segurança', content: '<h4>Passo a passo geral para enviar PIX</h4><ol><li>Abra o app do seu banco e toque em <strong>PIX</strong>.</li><li>Escolha <strong>Pagar</strong> ou <strong>Transferir</strong>.</li><li>Selecione a opção de pagar por <strong>chave PIX</strong>.</li><li>Digite a chave PIX da pessoa (por exemplo, e-mail ou telefone).</li><li>Confira o <strong>nome</strong> e <strong>banco</strong> que aparecem na tela.</li><li>Digite o valor que deseja enviar.</li><li>Revise todas as informações e confirme com sua senha ou biometria.</li></ol><h4>Cuidados importantes</h4><ul><li>Sempre confira nome e banco do destinatário antes de confirmar.</li><li>Se algo parecer estranho, <strong>não conclua</strong> a operação.</li><li>Nunca faça PIX para desconhecidos que entram em contato por mensagens suspeitas.</li></ul>' },
+          { id: 'pix_4', title: 'Aula 4: Como fazer pagamento por QR Code PIX', content: '<h4>O que é QR Code PIX?</h4><p>É um código quadrado (um "quadradinho preto e branco") que, ao ser lido pela câmera do celular, já traz todas as informações do pagamento PIX (conta, valor, descrição).</p><h4>Tipos de QR Code</h4><ul><li><strong>QR Code estático:</strong> normalmente usado por pequenos comércios ou pessoas físicas; pode ter valor fixo ou aberto.</li><li><strong>QR Code dinâmico:</strong> gerado para cada venda, normalmente em lojas e sistemas maiores.</li></ul><h4>Passo a passo para pagar com QR Code</h4><ol><li>Abra o app do seu banco e toque em <strong>PIX</strong>.</li><li>Escolha a opção <strong>Pagar com QR Code</strong>.</li><li>Aponte a câmera do celular para o QR Code (na tela ou impresso).</li><li>Espere o app reconhecer o código.</li><li>Confira o nome do recebedor e o valor.</li><li>Confirme com sua senha ou biometria.</li></ol>' },
+          { id: 'pix_5', title: 'Aula 5: Outros meios de fazer PIX e boas práticas', content: '<h4>PIX por “Copia e Cola”</h4><p>Além de chaves PIX e QR Code, é comum receber um <strong>código PIX copia e cola</strong>, que é uma sequência grande de caracteres.</p><ol><li>Toque e segure no código e selecione <strong>Copiar</strong>.</li><li>No app do banco, vá em PIX &gt; <strong>Colar código copia e cola</strong>.</li><li>Cole o código, confira os dados e confirme.</li></ol><h4>Agendar PIX</h4><p>Alguns bancos permitem <strong>agendar</strong> um PIX para uma data futura, como pagamento de contas recorrentes.</p><h4>Limites de valor</h4><p>Para sua segurança, bancos costumam definir limites de valor para PIX (por dia, por transação e especialmente à noite).</p><p>Você pode ajustar esses limites nas configurações de segurança do seu app bancário.</p><h4>Boas práticas de segurança no PIX</h4><ul><li>Desconfie de pedidos de PIX feitos por mensagens urgentes de desconhecidos.</li><li>Não compartilhe prints com QR Code do seu PIX de forma pública.</li><li>Use apenas aplicativos oficiais do banco e mantenha o celular bloqueado com senha/biometria.</li></ul>' },
+          { id: 'pix_6', title: 'Aula 6: A Chave Aleatória', content: '<p>Conjunto extenso de caracteres ilegíveis gerados via banco. Utilize-a incisivamente sempre que um comprador aleatório requisitar depositar em sua posse, protegendo seu CPF.</p>' },
+          { id: 'pix_7', title: 'Aula 7: A Engenharia de Envio', content: '<p>Transações doem. Após colocar a Chave de destino, observe em silêncio o nome do destinatário exibido em tela e a instituição que ele habita antes de confirmar com a senha.</p>' },
+          { id: 'pix_8', title: 'Aula 8: Limites Financeiros Protetivos', content: '<p>Reduza ativamente no seu banco a cota transferível, depondo fortunas do risco noturno dos crimes de sequestro e coerção presencial após o crepúsculo.</p>' },
+          { id: 'pix_9', title: 'Aula 9: Mecanismo Especial de Devolução (MED)', content: '<p>Aprenda que em casos estritos de fraude comprovada, o MED pode acionar o bloqueio e possível estorno na conta do criminoso. Aja rápido junto ao seu banco.</p>' },
+          { id: 'pix_10', title: 'Aula 10: Golpes Sociais Desmascarados', content: '<p>O falsário suplica, pelo familiar, um envio emergencial via mensagens falsas. Contate a pessoa via áudio verbal imediatamente, frustrando o ardil imundo.</p>' }
         ]
       }
     };
 
-    // === PROVA FINAL ABSOLUTA ===
+    // === PROVA FINAL ===
     const quizDatabase = [
-      { question: "Qual peça atua como o 'cérebro' físico, onde os comandos lógicos operam?", options: ["Memória RAM", "HD/SSD", "Processador (CPU)", "Fonte de Energia"], correct: 2 },
-      { question: "Qual a função do SSD comparado ao HD magnético?", options: ["Imprimir documentos", "Processar gráficos 3D", "Guardar dados mais rápido e sem peças móveis", "Enviar PIX"], correct: 2 },
-      { question: "Software de código aberto amplamente utilizado em servidores pela sua estabilidade e disciplina:", options: ["Windows", "Linux", "macOS", "iOS"], correct: 1 },
-      { question: "Ao aplicar formatações (negrito/itálico) e justificar textos pela ABNT, estamos evitando:", options: ["Vírus pesados", "A exclusão da sua conta", "A desordem e desleixo visual", "A quebra da Placa de Vídeo"], correct: 2 },
-      { question: "Como se mantém a disciplina visual em apresentações acadêmicas e do PowerPoint?", options: ["Poluição visual extrema", "Pouco texto, tópicos precisos, contraste e sobriedade", "Uso desmedido de animações cintilantes fúteis", "Uso apenas de tabelas sem gráficos"], correct: 1 },
-      { question: "No Android, qual o papel inegociável da Conta Google?", options: ["Sincronizar agenda, baixar apps na Play Store e atestar a verificação inicial", "Comprar pacotes irrisórios", "Acelerar a memória física do aparelho", "Apagar mensagens de terceiros"], correct: 0 },
-      { question: "Qual a chave PIX recomendada para transações com entidades ou pessoas duvidosas sem expor seus dados pessoais?", options: ["CPF", "E-mail Pessoal", "Telefone Celular", "Chave Aleatória"], correct: 3 },
-      { question: "Antes de digitar a sua senha vitalícia numa transação PIX, qual a atitude mandatória requerida?", options: ["Aprovar sem ler guiado pelo impulso", "Conferir o nome completo e banco do destinatário meticulosamente", "Reiniciar o celular imediatamente", "Apagar o cache do software de teclado"], correct: 1 },
-      { question: "Qual linguagem restrita e moderna é exigida pelo Xcode para edificar estruturas sólidas e programar no iOS?", options: ["Java", "Kotlin", "Swift", "C#"], correct: 2 },
-      { question: "Qual a finalidade de se estabelecer 'Limites Noturnos' no aplicativo restrito do banco corporativo?", options: ["Diminuir a taxa de juros diários", "Impedir transferências volumosas sob a noite para preservação estrita contra assaltos físicos", "Economizar bateria em longas esperas", "Aumentar a pontuação superficial do cartão"], correct: 1 },
-      { question: "Para evitar a perda irreparável e catastrófica de arquivos em casos de avaria mecânica, o universitário deve:", options: ["Lembrar tudo de memória e torcer", "Mandar um e-mail com anexos para sua mesma caixa de entrada", "Ignorar backups porque consumem espaço irrisório", "Efetuar backups diários e metódicos ancorados cruzadamente na Nuvem (Cloud)"], correct: 3 },
-      { question: "Em redes acadêmicas, a presença rigorosa do cadeado seguido pela letra 'S' em HTTPS exprime enfaticamente:", options: ["A conexão foi interceptada", "Navegador obsoleto e em risco evidente", "A conexão de ponta a ponta encontra-se devidamente cifrada contra espiões amadores (criptografia)", "Sinal vital e roteador cabeado e operante de fibra óptica"], correct: 2 },
-      { question: "Qual a tríade irrevogável estipulada em Segurança da Informação Moderna?", options: ["Comédia, Impulso e Avareza", "Confidencialidade, Integridade e Disponibilidade", "Cores, Impressão e Design", "Celular, Interação e Dados"], correct: 1 },
-      { question: "No MS Excel de ambiente laboral, as automatizações repetitivas, desenvolvidas para sanar fadigas numéricas da mão humana, residem sobre as tutelas de:", options: ["Gráficos Piezométricos", "Transições animadas 3D", "Macros codificadas no âmago VBA", "Pincel formatador fútil"], correct: 2 },
-      { question: "Em ambiente de simulação rigorosa ou Apple (Sandboxing), o preceito maior de reprimir contato do seu App restringe-se a:", options: ["Não acessar contatos se tratar-se de utilitários meros ou de utilidade vazia como meras lanternas", "Destravar todas as barreiras nativas e forçar o Jailbreak por ansiedade fútil", "Utilizar internet alheia do inquilino", "Causar travamentos sem motivo"], correct: 0 }
+      { question: "Qual componente é considerado o 'cérebro' do computador?", options: ["Memória RAM", "Placa-Mãe", "CPU (Processador)", "SSD"], correct: 2 },
+      { question: "O que é 'Software'?", options: ["Parte física", "Programas e instruções", "O monitor", "Cabos"], correct: 1 },
+      { question: "O que acontece durante o 'Boot'?", options: ["O computador desliga sem salvar nada", "O software testa o hardware e chama o S.O.", "A energia é bloqueada", "O Wi-Fi desconecta"], correct: 1 },
+      { question: "Qual tecla confirma uma ação no teclado?", options: ["Esc", "Shift", "Enter", "Ctrl"], correct: 2 },
+      { question: "Qual destes é um sistema operacional de Código Aberto?", options: ["Windows", "macOS", "iOS", "Linux"], correct: 3 },
+      { question: "O que é a Área de Trabalho (Desktop)?", options: ["A mesa física", "A tela inicial do sistema", "O teclado", "A lixeira"], correct: 1 },
+      { question: "O que significa 'WWW'?", options: ["World Wide Web", "Windows Web Wifi", "World Web Wires", "Nada"], correct: 0 },
+      { question: "O que previne o extravio brutal dos arquivos e fotografias em smartphones quebrados?", options: ["Otimização de RAM", "Adesivos protetivos", "Ignorar backups", "Sincronismos com servidores online de Nuvem"], correct: 3 },
+      { question: "O que é Wi‑Fi?", options: ["Internet com fio", "Tecnologia sem fio para conexão via rádio", "Um antivírus", "Um tipo de cabo"], correct: 1 },
+      { question: "Para que serve o Excel?", options: ["Texto e Cartas", "Slides", "Navegar na web", "Planilhas matemáticas e cálculos lógicos"], correct: 3 },
+      { question: "Como se procede à formatação visual respeitosa no MS Word?", options: ["Fontes cômicas", "Uso indiscriminado de negritos", "Alinhamento justificado e tipografia formal (Arial/Times)", "Fundos negros ilegíveis"], correct: 2 },
+      { question: "O atalho de comando rigoroso Ctrl+C seguido de Ctrl+V realiza:", options: ["Exclusão do sistema", "Ato de cópia e de transposição de dados (Colar)", "Tradução textual", "Aumento do brilho"], correct: 1 },
+      { question: "Qual linguagem oficial é mais recomendada e moderna para programar no Android atualmente?", options: ["Java", "Swift", "Kotlin", "C#"], correct: 2 },
+      { question: "Qual empresa desenvolve rigorosamente o iOS?", options: ["Google", "Microsoft", "Samsung", "Apple"], correct: 3 },
+      { question: "Na Internet veloz, a presença do cadeado minúsculo aliado à letra 'S' em HTTPS exprime que:", options: ["Sinal de Wi-Fi forte", "Navegador de internet veloz", "Conexão cifrada e segura contra interceptação", "Cabo de rede inserido"], correct: 2 },
+      { question: "Qual porta conecta pen-drives e periféricos removíveis?", options: ["HDMI", "VGA", "A via Universal Serial Bus (USB)", "P2 de áudio"], correct: 2 },
+      { question: "Para desbloquear a tela de um Android moderno com rigor, você pode usar:", options: ["Somente senha escrita em papel", "Somente reconhecimento de voz alto", "PIN, padrão geométrico ou biometria", "Apenas cabo USB original"], correct: 2 },
+      { question: "No iPhone, a função do Face ID atende estritamente para:", options: ["Aumentar o volume das mídias", "Reconhecer o mapeamento do rosto 3D e desbloquear o aparelho", "Conectar ao Wi‑Fi do vizinho", "Formatar a memória interna"], correct: 1 },
+      { question: "Para evitar riscos a dados pessoais na via pública e em compras casuais via PIX, o prudente aciona:", options: ["O CPF integral", "O Telefone", "A formulação de Chaves Aleatórias imprevisíveis", "O E-mail primário"], correct: 2 },
+      { question: "Antes da anuência irreversível da transação PIX com a senha, a inspeção exige:", options: ["Fechar os olhos e torcer", "Ler o texto integral, examinando o nome e o banco receptor de fundos", "Reiniciar o celular", "Remover a internet"], correct: 1 }
     ];
 
-    // === Tema Rigoroso ===
+    // === Tema ===
+    const themeToggleButtons = document.querySelectorAll('.botao-tema');
     function applyInitialTheme() {
       const savedTheme = localStorage.getItem('theme');
-      const isDark = savedTheme === 'dark';
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const isDark = savedTheme ? savedTheme === 'dark' : prefersDark;
       document.body.classList.toggle('dark-mode', isDark);
     }
-    function setTheme(mode) {
-      if(mode === 'dark') {
-        document.body.classList.add('dark-mode');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        document.body.classList.remove('dark-mode');
-        localStorage.setItem('theme', 'light');
-      }
+    function toggleTheme() {
+      const isDark = document.body.classList.toggle('dark-mode');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
     }
+    themeToggleButtons.forEach(btn => btn.addEventListener('click', toggleTheme));
     applyInitialTheme();
 
     // === Zoom ===
@@ -1972,7 +1040,20 @@
     function zoomIn() { if (currentZoom < 150) { currentZoom += 10; document.documentElement.style.fontSize = currentZoom + '%'; } }
     function zoomOut() { if (currentZoom > 70) { currentZoom -= 10; document.documentElement.style.fontSize = currentZoom + '%'; } }
 
-    // === Estado e Navegação Central ===
+    // === Vigilância de Inatividade ===
+    let inactivityTimer;
+    function resetInactivityTimer() {
+        clearTimeout(inactivityTimer);
+        if (isLoggedIn) {
+            inactivityTimer = setTimeout(() => {
+                alert("Sessão encerrada por inatividade de 3 minutos. A disciplina exige foco contínuo.");
+                handleLogout(new Event('click'));
+            }, 180000); // 3 minutos
+        }
+    }
+    ['mousemove', 'keydown', 'scroll', 'click'].forEach(evt => document.addEventListener(evt, resetInactivityTimer));
+
+    // === Estado e Navegação ===
     let isLoggedIn = false;
     let currentUserEmail = null;
     let lessonCompletionState = {};
@@ -2018,6 +1099,7 @@
       if (pageId === 'login' || pageId === 'signup') displayStyle = 'flex';
       pages[pageId].style.display = displayStyle;
       window.scrollTo(0, 0);
+      resetInactivityTimer();
     }
 
     function showLandingPage(e) { if(e) e.preventDefault(); showPage('landing'); }
@@ -2039,15 +1121,6 @@
         toggleSexoEspecifico();
         document.getElementById('user-sexo-especifico').value = user.sexoEspecifico || "";
 
-        const avatarPreviewContainer = document.getElementById('image-preview-container');
-        const tempAvatarPreview = document.getElementById('temp-avatar-preview');
-        if(user.avatar) {
-            tempAvatarPreview.src = user.avatar;
-            avatarPreviewContainer.style.display = 'block';
-        } else {
-            avatarPreviewContainer.style.display = 'none';
-        }
-
         showPage('settings');
     }
 
@@ -2061,27 +1134,10 @@
         }
     }
 
-    function previewImage(event) {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('temp-avatar-preview').src = e.target.result;
-                document.getElementById('image-preview-container').style.display = 'block';
-            };
-            reader.readAsDataURL(file);
-        }
-    }
-
-    function resizePreviewImage(value) {
-        const img = document.getElementById('temp-avatar-preview');
-        img.style.width = value + 'px';
-    }
-
     function showCertificateFormPage(e) { if(e) e.preventDefault(); if(!isLoggedIn) showLogin(e); else showPage('certificate'); }
     function handleLogoClick(e) { if(isLoggedIn) showDashboard(e); else showLandingPage(e); }
 
-    // === Fórum Acadêmico ===
+    // === Fórum ===
     function showForumPage(e) {
         if(e) e.preventDefault();
         if(!isLoggedIn) { showLogin(e); return; }
@@ -2097,7 +1153,7 @@
         const posts = getForumPosts();
         container.innerHTML = '';
         if (posts.length === 0) {
-            container.innerHTML = '<p style="text-align:center; color:var(--cor-texto-secundario);">O silêncio estrito e absoluto aguarda suas interações. Contribua sem leviandades.</p>';
+            container.innerHTML = '<p style="text-align:center; color:var(--cor-texto-secundario);">O silêncio do fórum aguarda suas dúvidas pautadas na razão. Exijo contribuições elevadas.</p>';
             return;
         }
 
@@ -2115,7 +1171,7 @@
     function submitForumPost() {
         const textarea = document.getElementById('forum-new-post');
         const text = textarea.value.trim();
-        if (!text) { alert("Não submeta campos vazios. Eu exijo conteúdo palpável de quem pleiteia a tecnologia."); return; }
+        if (!text) { alert("Não ocupe o espaço com vácuo. Escreva o conteúdo antes de acionar este botão."); return; }
 
         const db = loadUserDb();
         const user = db[currentUserEmail];
@@ -2133,16 +1189,16 @@
     function showQuizPage(e) {
       if(e) e.preventDefault();
       if(!isLoggedIn) { showLogin(e); return; }
-      if(generalProgressPercent < 100 && quizStatus !== "passed") { alert("Recusado. A prova requer que suas obrigações modulares alcancem plenos 100%. Regresse ao estudo silencioso."); return; }
+      if(generalProgressPercent < 100 && quizStatus !== "passed") { alert("Seu atalho fracassará. Conclua categoricamente todas as aulas de todos os módulos antes de me exigir acesso à prova."); return; }
       if(quizInProgress) { showPage('quiz'); document.getElementById('quiz-intro').style.display = 'none'; document.getElementById('quiz-results').style.display = 'none'; document.getElementById('quiz-main').style.display = 'block'; return; }
       document.getElementById('quiz-intro').style.display = 'block';
       document.getElementById('quiz-results').style.display = 'none';
       document.getElementById('quiz-main').style.display = 'none';
-      let statusText = `Dispões de ínfimas ${maxQuizAttempts - quizAttempts} tentativa(s). Faça-as valerem os ensinamentos adquiridos.`;
+      let statusText = `Você possui restritas ${maxQuizAttempts - quizAttempts} tentativa(s) para atestar a média estrita de 6,0.`;
       const introButton = document.getElementById('quiz-intro').querySelector('.botao-primario');
 
-      if(quizStatus === "passed") { statusText = "Você atendeu com honra aos meus moldes de aprovação."; introButton.style.display = 'none'; }
-      else if(quizAttempts >= maxQuizAttempts) { statusText = "Tentativas exauridas pela mediocridade. Reinicie seus alicerces no Painel (Dashboard)."; introButton.style.display = 'none'; }
+      if(quizStatus === "passed") { statusText = "Você se provou digno da aprovação."; introButton.style.display = 'none'; }
+      else if(quizAttempts >= maxQuizAttempts) { statusText = "Suas tentativas frustradas o reprovaram. Retorne à submissão dos módulos integralmente no seu Painel de Controle."; introButton.style.display = 'none'; }
       else { introButton.style.display = 'block'; }
 
       document.getElementById('quiz-attempt-status').textContent = statusText;
@@ -2157,7 +1213,7 @@
       showPage('module');
     }
 
-    // === LOGIN / SIGNUP E TRANSFERÊNCIA DE REDES SOCIAIS ===
+    // === LOGIN / SIGNUP / SENHA ===
     function handleLogin(e) {
       if(e) e.preventDefault();
       const emailInput = document.getElementById('email-login');
@@ -2166,9 +1222,9 @@
       const email = (emailInput.value || '').trim().toLowerCase();
       const password = passInput.value;
 
-      if(!email || !password) { errorEl.textContent = 'Não permita negligências nos campos vitais. Preencha-os com a senha respectiva.'; errorEl.style.display = 'block'; return; }
+      if(!email || !password) { errorEl.textContent = 'Não permita negligências nos campos vitais. Preencha-os.'; errorEl.style.display = 'block'; return; }
       const attempts = getLoginAttempts(email);
-      if(attempts >= 3) { errorEl.textContent = 'Conta enclausurada mediante equívocos consecutivos severos. Resete sua senha com retidão e obediência.'; errorEl.style.display = 'block'; return; }
+      if(attempts >= 3) { errorEl.textContent = 'Conta enclausurada mediante três equívocos consecutivos de chaves. Resete sua senha com retidão no campo abaixo.'; errorEl.style.display = 'block'; return; }
 
       const db = loadUserDb();
       const user = db[email];
@@ -2176,7 +1232,7 @@
       if(!user || user.password !== password) {
         const newAttempts = attempts + 1;
         setLoginAttempts(email, newAttempts);
-        errorEl.textContent = newAttempts >= 3 ? 'Acesso barrado provisoriamente face à falha crassa.' : `Insira sua credencial coerente. Desleixo computado: ${newAttempts}/3.`;
+        errorEl.textContent = newAttempts >= 3 ? 'Acesso barrado provisoriamente face às falhas.' : `Insira sua credencial coerente. Erro computado: ${newAttempts}/3.`;
         errorEl.style.display = 'block';
         return;
       }
@@ -2195,10 +1251,11 @@
 
       if(!email || !password) { alert('Insira dados autênticos na formalização da sua entrada.'); return; }
       const db = loadUserDb();
-      if(db[email]) { alert("Este e-mail atesta estadia prévia contínua em meu acervo central. Conduza-se na obediência estrita do seu Login particular e pare de simular contornos nulos."); showLogin(); return; }
+      if(db[email]) { alert("O seu e-mail atesta presença neste recinto. Prossiga sem desvios e execute a via estrita de login."); showLogin(); return; }
 
-      const auth = confirm("Você atesta plenamente a concordância no tratamento deste E-mail fornecido sob nossas bases estritas acadêmicas?");
-      if(!auth) return;
+      // Simulação rigorosa de provedor de e-mail / autorização
+      const authConfirm = confirm("O sistema solicita sua autorização formal para criar e gerir os dados da sua conta através deste e-mail. Você autoriza?");
+      if(!authConfirm) { alert("Cadastro cancelado pela falta de anuência."); return; }
 
       const nameDefault = email.split('@')[0] || 'Usuário';
       const initials = nameDefault.split(' ').map(n=>n[0]).join('').substring(0,2).toUpperCase() || "US";
@@ -2207,37 +1264,27 @@
       saveUserDb(db);
       emailInput.value = ''; passInput.value = '';
 
-      alert("Suas credenciais formataram-se com ordem. Exijo que entre imediatamente prestando reverência à aba de Login formal para adentrar na universidade do sistema.");
-      showLogin();
+      alert("Autorização concedida. Conta assentada nos trilhos lógicos do nosso curso.");
+      executeLogin(email, db[email]);
     }
 
-    function handleSocialAuth(e, provider, isSignup = false) {
+    function handleSocialAuth(e, provider) {
       if(e) e.preventDefault();
       const email = `social_${provider}@example.com`;
       const db = loadUserDb();
 
-      if(isSignup) {
-          if(db[email]) {
-              alert(`Você tentou forjar registros, pois o provedor ${provider} atesta vínculo pregresso inescusável. Rume para a autenticação central (Login).`);
-              showLogin();
-              return;
-          }
-          const auth = confirm(`Deseja autorizar indubitavelmente e em plenas vias que os servidores e permissões alheias repousem e se submetam com o provedor [${provider.toUpperCase()}] sobre nossos alicerces?`);
-          if(!auth) return;
-
-          const nameDefault = provider.charAt(0).toUpperCase() + provider.slice(1) + " User";
-          const initials = nameDefault.substring(0,2).toUpperCase() || "SU";
-          db[email] = { password: 'social_login', name: nameDefault, initials: initials, avatar: null, isSocial: true };
-          saveUserDb(db);
-          alert(`Registro amarrado sem remendos. A ordem impõe seu retorno aos umbrais iniciais; certifique sua entrada na página de Login agora.`);
-          showLogin();
+      if(db[email]) {
+         executeLogin(email, db[email]);
       } else {
-          if(db[email]) {
-             executeLogin(email, db[email]);
-          } else {
-             alert(`Não há registros estipulados via [${provider.toUpperCase()}] atrelados em nosso repositório. Faça sua inscrição respeitando as regras primeiro.`);
-             showSignup();
-          }
+         const authConfirm = confirm(`A plataforma redirecionaria você para o ${provider} para solicitar acesso aos seus dados públicos. Você autoriza a criação do vínculo?`);
+         if(!authConfirm) { alert("Vínculo abortado."); return; }
+
+         const nameDefault = provider.charAt(0).toUpperCase() + provider.slice(1) + " User";
+         const initials = nameDefault.substring(0,2).toUpperCase() || "SU";
+         db[email] = { password: 'social_login', name: nameDefault, initials: initials, avatar: null, isSocial: true };
+         saveUserDb(db);
+         alert(`Vínculo de autenticação externa com ${provider} autorizado com sucesso. Acesso concedido.`);
+         executeLogin(email, db[email]);
       }
     }
 
@@ -2248,51 +1295,53 @@
       const initials = displayNome.split(' ').map(n=>n[0]).join('').substring(0,2).toUpperCase();
       updateUserDetails(displayNome, initials, user.avatar || null);
       showDashboard();
+      resetInactivityTimer();
     }
 
     function handleForgotPassword(e) {
       if(e) e.preventDefault();
-      const email = prompt("Digite inquestionavelmente, sem evasivas, o e-mail atrelado aos meus registros:");
+      const email = prompt("Digite unicamente e de forma lúcida o email vinculado ao seu registro sistêmico:");
       if(!email) return;
       const cleanEmail = email.trim().toLowerCase();
       const db = loadUserDb();
-      if(!db[cleanEmail]) { alert("Rejeitado de plano. Nenhuma identidade bateu nos escombros lógicos requeridos. Cadastre-se na lei primeiro."); return; }
+      if(!db[cleanEmail]) { alert("Rejeitado. As informações fornecidas carecem de um abrigo lógico no meu banco de usuários. Inscreva-se legitimamente antes."); return; }
 
-      const newPassword = prompt("Estipule a senha pessoal formidável. Recusarei meias lógicas esquecíveis e banais:");
-      if(!newPassword) { alert("Os campos quedaram vagos; alteração repelida."); return; }
+      const newPassword = prompt("Determine a nova matriz de acesso pessoal e exijo rigor em não esquecê-la novamente:");
+      if(!newPassword) { alert("Os campos quedaram vagos; alteração abolida do sistema."); return; }
 
       db[cleanEmail].password = newPassword;
       saveUserDb(db);
       setLoginAttempts(cleanEmail, 0);
-      alert("Feito. Modificação ratificada nos cadernos lógicos de acesso.");
+      alert("Sua chave foi reconstruída em alicerces sólidos. Acesse e recomece.");
     }
 
     function handleLogout(e) {
       if(e) e.preventDefault();
       isLoggedIn = false;
       currentUserEmail = null;
+      clearTimeout(inactivityTimer);
       updateUserDetails("Usuário", "US", null);
       showLandingPage();
     }
 
     function handleDeactivateAccount() {
       if(!currentUserEmail) return;
-      const confirma = confirm("Desejas ocultar suas credenciais nas sombras desprovidas de aprendizado sem deletar os vestígios temporários de sua vivência educacional?");
+      const confirma = confirm("Inquiro se tens convicção plena em ocultar suas raízes educacionais neste servidor temporariamente.");
       if(!confirma) return;
-      alert("Teus domínios restam letárgicos. A ativação impera apenas diante a força e coragem de seu futuro retorno (Login).");
+      alert("Sua trilha silenciou. Seu perfil aguardará sua futura retomada consciente pelo saguão central (Login).");
       handleLogout(new Event('click'));
     }
 
     function handleDeleteAccount() {
       if(!currentUserEmail) return;
-      const confirma = confirm("Aviso irrevogável da disciplina suprema: esse clique vaporizará as suas métricas duramente conquistadas aos 4 ventos de bits apagados. Ousará varrer-se de meu cômputo infinitamente?");
+      const confirma = confirm("As consequências deste botão trarão anulação perpétua. Asseguro-me que saiba: isso desintegrará progressos e avaliações. Persistes na exclusão impiedosa?");
       if(!confirma) return;
       const db = loadUserDb();
       delete db[currentUserEmail];
       saveUserDb(db);
       setLoginAttempts(currentUserEmail, 0);
       resetCourse();
-      alert("As poeiras do seu rastro não ocupam mais nossos HDDs em nenhuma instância. Fim imposto.");
+      alert("Você escolheu pulverizar sua passagem entre nós. Os dados extinguiram-se categoricamente do meu banco local.");
       handleLogout(new Event('click'));
     }
 
@@ -2312,6 +1361,34 @@
       }
     }
 
+    // === Motor de Redimensionamento Canvas para Fotos de Qualquer Tamanho ===
+    function resizeImage(file, maxSize, callback) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const img = new Image();
+            img.onload = function() {
+                const canvas = document.createElement('canvas');
+                let width = img.width;
+                let height = img.height;
+
+                if (width > height) {
+                    if (width > maxSize) { height *= maxSize / width; width = maxSize; }
+                } else {
+                    if (height > maxSize) { width *= maxSize / height; height = maxSize; }
+                }
+
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, width, height);
+                // Converte em base64 reduzido e compactado para não estourar a memória
+                callback(canvas.toDataURL('image/jpeg', 0.85));
+            };
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+
     function saveSettings(e) {
       e.preventDefault();
       if(!currentUserEmail) return;
@@ -2322,25 +1399,19 @@
       const socialInput = document.getElementById('user-social-input').value.trim();
       const sexoSelect = document.getElementById('user-sexo-select').value;
       const sexoEspec = document.getElementById('user-sexo-especifico').value.trim();
+      const fileInput = document.getElementById('user-avatar-input');
       const newPass = document.getElementById('user-new-password').value.trim();
-
-      const imgElement = document.getElementById('temp-avatar-preview');
-      let finalAvatarUrl = undefined;
-      // Se tiver mudado, a imagem do src base64 ou da db
-      if (document.getElementById('image-preview-container').style.display === 'block') {
-          finalAvatarUrl = imgElement.src;
-      }
 
       const db = loadUserDb();
       let user = db[currentUserEmail];
 
-      // Lidar infinitas vezes com a troca rígida de E-MAIL sem perder nada
-      if (newEmailInput && newEmailInput !== currentUserEmail) {
+      // Lógica de alteração de e-mail infinita e protegida
+      if(newEmailInput !== currentUserEmail) {
           if(db[newEmailInput]) {
-              alert("Absurdo. Esta morada de correio eletrônico reside em posse alheia e imutável neste domínio de bancos virtuais. Imponha uma inédita.");
+              alert("Este novo e-mail já está sob o domínio de outra conta na base.");
               return;
           }
-          db[newEmailInput] = user; // Move the data precisely
+          db[newEmailInput] = user;
           delete db[currentUserEmail];
           currentUserEmail = newEmailInput;
       }
@@ -2352,16 +1423,28 @@
       user.sexoEspecifico = sexoEspec;
       if(newPass) user.password = newPass;
 
-      if(finalAvatarUrl !== undefined) user.avatar = finalAvatarUrl;
-      const displayNome = user.nomeSocial || user.apelido || user.name;
-      user.initials = displayNome.split(' ').map(n=>n[0]).join('').substring(0,2).toUpperCase() || "US";
+      const finalizeSave = (avatarUrl) => {
+        if(avatarUrl !== undefined) user.avatar = avatarUrl;
+        const displayNome = user.nomeSocial || user.apelido || user.name;
+        user.initials = displayNome.split(' ').map(n=>n[0]).join('').substring(0,2).toUpperCase() || "US";
 
-      db[currentUserEmail] = user;
-      saveUserDb(db);
-      updateUserDetails(displayNome, user.initials, user.avatar || null);
-      document.getElementById('user-new-password').value = '';
-      document.getElementById('user-avatar-input').value = '';
-      showDashboard();
+        db[currentUserEmail] = user;
+        saveUserDb(db);
+        updateUserDetails(displayNome, user.initials, user.avatar || null);
+        document.getElementById('user-new-password').value = '';
+        fileInput.value = '';
+        showDashboard();
+      };
+
+      const file = fileInput.files[0];
+      if(file) {
+        // Usa o redimensionador Canvas (limite 500px para garantir que seja salva no LocalStorage sem erros)
+        resizeImage(file, 500, (resizedBase64) => {
+            finalizeSave(resizedBase64);
+        });
+      } else {
+        finalizeSave(undefined);
+      }
     }
 
     function submitCertificateForm(e) {
@@ -2369,12 +1452,12 @@
       const nome = document.getElementById('cert-name').value;
       const email = document.getElementById('cert-email').value;
       const subject = "Solicitação de Certificado - Curso de Informática";
-      const body = `Aluno(a): ${nome}\nEmail: ${email}\n\nAprovado com galhardia absoluta na via da tecnologia pura. Enviai a titulação expedida nos moldes universitários rígidos de prontidão imediata.`;
+      const body = `Aluno(a): ${nome}\nEmail: ${email}\n\nAprovado nas instâncias regulares. Demando a averiguação da certificação de conclusão sistêmica em seu nome.`;
       window.location.href = `mailto:fernando50henrique@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       showDashboard();
     }
 
-    // === Navegação Universitária e Controle Estrito dos Módulos das 10 Aulas ===
+    // === Controle e Navegação das Múltiplas Aulas ===
     function loadModuleContent(key) {
       const moduleData = moduleDatabase[key];
       if(!moduleData) return;
@@ -2398,7 +1481,7 @@
                   <input type="checkbox" id="${lesson.id}" onchange="handleLessonCheck(this, '${lesson.id}')" ${isChecked}>
                   <label for="${lesson.id}">${lesson.title}</label>
                 </div>
-                <button class="botao botao-primario" onclick="toggleLessonContentByBtn(${index})">Iniciar Estudo</button>
+                <button class="botao botao-primario" onclick="toggleLessonContentByBtn(${index})">Iniciar</button>
               </div>
               <div class="lesson-content" id="lesson-content-${index}">
                 ${lesson.content}
@@ -2416,22 +1499,26 @@
 
         if(content.classList.contains('active')) {
             content.classList.remove('active');
-            btn.textContent = 'Iniciar Estudo';
+            btn.textContent = 'Iniciar';
             currentOpenLessonIndex = -1;
         } else {
+            // Fechar abertos
             document.querySelectorAll('#module-page .lesson-content').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('#module-page .lesson-item-header .botao').forEach(b => b.textContent = 'Iniciar Estudo');
+            document.querySelectorAll('#module-page .lesson-item-header .botao').forEach(b => b.textContent = 'Iniciar');
 
+            // Abrir selecionado
             content.classList.add('active');
             btn.textContent = 'Fechar';
             currentOpenLessonIndex = index;
 
+            // Marca como visto
             const chk = document.getElementById(currentModuleDataList[index].id);
             if(!chk.checked) {
                 chk.checked = true;
                 handleLessonCheck(chk, currentModuleDataList[index].id);
             }
         }
+        resetInactivityTimer();
     }
 
     function navigateLesson(direction) {
@@ -2446,14 +1533,16 @@
                 document.getElementById(`lesson-card-${nextIndex}`).scrollIntoView({ behavior: 'smooth', block: 'center' });
             }, 100);
         } else {
-            alert("Ordem estipulada: Limites da décima classe varridos em completude. Regresse e obedeça ao comando de prosseguir via Dashboard acadêmico das origens.");
+            alert("Sua travessia nestes módulos esbarrou no final lógico da esteira das 10 aulas. Mantenha os seus pés no Painel de Controle e estude as adjacências.");
         }
+        resetInactivityTimer();
     }
 
     function handleLessonCheck(checkbox, lessonId) {
       lessonCompletionState[lessonId] = checkbox.checked;
       updateModuleProgressUI();
       updateGeneralProgress();
+      resetInactivityTimer();
     }
 
     function updateModuleProgressUI() {
@@ -2463,7 +1552,7 @@
       lessons.forEach(l => { if(l.checked) completedLessons++; });
       const progress = (completedLessons / lessons.length) * 100;
       document.getElementById('module-progress-bar-inner').style.width = progress + '%';
-      document.getElementById('module-progress-text').textContent = `${completedLessons} de ${lessons.length} aulas lidas em obediência`;
+      document.getElementById('module-progress-text').textContent = `${completedLessons} de ${lessons.length} aulas concluídas com esmero`;
     }
 
     function updateGeneralProgress() {
@@ -2472,10 +1561,10 @@
       generalProgressPercent = totalAllLessons > 0 ? (totalCompleted / totalAllLessons) * 100 : 0;
       document.getElementById('general-progress-value').textContent = generalProgressPercent.toFixed(0) + '%';
       document.getElementById('general-progress-bar').style.width = generalProgressPercent + '%';
-      document.getElementById('general-progress-text').textContent = `${totalCompleted} de ${totalAllLessons} lições consolidadas com pleno acerto`;
+      document.getElementById('general-progress-text').textContent = `${totalCompleted} de ${totalAllLessons} lições assentadas na base da razão`;
     }
 
-    // === Prova Final ===
+    // === Prova Final da Malha Avaliativa ===
     let quizAttempts = 0;
     const maxQuizAttempts = 3;
     const passingScore = 6;
@@ -2484,6 +1573,12 @@
     let currentQuizQuestions = [];
     let currentQuestionIndex = 0;
     let quizInProgress = false;
+
+    function shuffleArray(array) {
+      let arr = [...array];
+      for(let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; }
+      return arr;
+    }
 
     function startQuiz() {
       if(quizStatus === "passed" || quizAttempts >= maxQuizAttempts) { showQuizPage(); return; }
@@ -2497,28 +1592,30 @@
       document.getElementById('quiz-results').style.display = 'none';
       document.getElementById('quiz-main').style.display = 'block';
       loadQuizQuestion();
-      document.getElementById('quiz-timer').textContent = `Teste Definitivo - Avaliação Nº ${quizAttempts}/${maxQuizAttempts}`;
+      document.getElementById('quiz-timer').textContent = `Prova - Teste Avaliativo de Rigor ${quizAttempts}/${maxQuizAttempts}`;
     }
 
     function loadQuizQuestion() {
       if(currentQuestionIndex >= currentQuizQuestions.length) { showQuizResults(); return; }
       const questionData = currentQuizQuestions[currentQuestionIndex];
-      document.getElementById('quiz-question-header').textContent = `Apreciação Férrea ${currentQuestionIndex + 1} de ${currentQuizQuestions.length}`;
+      document.getElementById('quiz-question-header').textContent = `Questão Imutável ${currentQuestionIndex + 1} de ${currentQuizQuestions.length}`;
       document.getElementById('quiz-question').textContent = questionData.question;
       const optionsContainer = document.getElementById('quiz-options-container');
       optionsContainer.innerHTML = '';
       questionData.options.forEach((option, index) => {
         optionsContainer.innerHTML += `<label class="quiz-option"><input type="radio" name="quiz-option" value="${index}"> ${option}</label>`;
       });
-      document.querySelector('#quiz-main .botao-primario').textContent = currentQuestionIndex === currentQuizQuestions.length - 1 ? 'Chancelar Prova e Requisitar Média' : 'Prosseguir Teste';
+      document.querySelector('#quiz-main .botao-primario').textContent = currentQuestionIndex === currentQuizQuestions.length - 1 ? 'Chancelar e Finalizar a Prova' : 'Avançar na Próxima Pergunta';
+      resetInactivityTimer();
     }
 
     function submitAnswer() {
       const selected = document.querySelector('input[name="quiz-option"]:checked');
-      if(!selected) { alert("Eu proíbo atalhos preguiçosos. Assinale a sua posição inabalável na caixa antes de evocar a próxima linha."); return; }
+      if(!selected) { alert("Sua negligência impede a submissão. Indique uma opção tangível perante a pergunta visualizada."); return; }
       currentQuizQuestions[currentQuestionIndex].selected = parseInt(selected.value, 10);
       currentQuestionIndex++;
       loadQuizQuestion();
+      resetInactivityTimer();
     }
 
     function showQuizResults() {
@@ -2535,7 +1632,7 @@
       const tryAgainButton = document.getElementById('quiz-try-again-button');
       const restartButton = document.getElementById('quiz-restart-button');
 
-      resultScore.textContent = `Apuração Fixada: ${scoreOutOfTen.toFixed(1)}`;
+      resultScore.textContent = `Pontuação Absoluta Registrada: ${scoreOutOfTen.toFixed(1)}`;
       resultsElement.style.display = 'block';
 
       if(scoreOutOfTen >= passingScore) {
@@ -2545,15 +1642,15 @@
       } else {
         if(quizAttempts < maxQuizAttempts) {
           quizStatus = "failed";
-          resultTitle.textContent = "Derrota por Inaptidão Imediata";
-          resultMessage.textContent = `A falta de imersão rendeu-lhe o amargo piso numérico de ${scoreOutOfTen.toFixed(1)}. Restam ainda singelas tentativas contadas em: ${maxQuizAttempts - quizAttempts}. Estude com honra absoluta.`;
+          resultTitle.textContent = "Nota Insuficiente Para o Padrão Cobrado";
+          resultMessage.textContent = `Os cadernos de revisão requerem suas horas a mais de vigília. Você possui apenas as escassas tentativas de: ${maxQuizAttempts - quizAttempts}.`;
           resultScore.style.color = 'var(--cor-erro)';
           tryAgainButton.style.display = 'block';
           restartButton.style.display = 'none';
         } else {
           quizStatus = "failed_final";
-          resultTitle.textContent = "Sufocado nas Próprias Máculas";
-          resultMessage.textContent = `O encerramento é cravado na parede perante o fracasso tríplice. Nenhuma súplica ou desculpas importam. Resete a malha central e reinicie em severa provação imposta sobre o botão avermelhado.`;
+          resultTitle.textContent = "Cota Plenamente Exaurida e Reprovada";
+          resultMessage.textContent = `O aprendizado preguiçoso tem as suas sentenças impostas. Foram-se 3 submissões frustradas. Apague, limpe, e retorne da gênese zerando a progressão contínua deste curso.`;
           resultScore.style.color = 'var(--cor-erro)';
           tryAgainButton.style.display = 'none';
           restartButton.style.display = 'block';
@@ -2566,13 +1663,13 @@
       const val = document.getElementById('quiz-card-value');
       const text = document.getElementById('quiz-card-text');
       if(quizStatus === "passed") {
-        val.textContent = `Aprovado`; text.textContent = `Certificação Habilitada com ${lastQuizScore.toFixed(1)}`; val.style.color = 'var(--cor-sucesso)';
+        val.textContent = `Aprovado`; text.textContent = `Média Imposta Alcançada: ${lastQuizScore.toFixed(1)}`; val.style.color = 'var(--cor-sucesso)';
       } else if(quizStatus === "failed_final") {
-        val.textContent = "Reprovado"; text.textContent = "Limite Desperdiçado por Negligência"; val.style.color = 'var(--cor-erro)';
+        val.textContent = "Reprovado"; text.textContent = "Limite Desperdiçado"; val.style.color = 'var(--cor-erro)';
       } else if(quizAttempts > 0) {
-        val.textContent = `Falhou`; text.textContent = `Contagem restando na lousa: ${maxQuizAttempts - quizAttempts}`; val.style.color = 'var(--cor-erro)';
+        val.textContent = `Falhou`; text.textContent = `Vigie e estude nas remanescentes: ${maxQuizAttempts - quizAttempts}`; val.style.color = 'var(--cor-erro)';
       } else {
-        val.textContent = "Fazer"; text.textContent = "Seja brilhante, não amador."; val.style.color = 'var(--cor-primaria)';
+        val.textContent = "Fazer"; text.textContent = "Exija excelência absoluta do seu próprio eu."; val.style.color = 'var(--cor-primaria)';
       }
     }
 
@@ -2582,7 +1679,7 @@
       document.getElementById('quiz-intro').style.display = 'block';
       document.getElementById('quiz-results').style.display = 'none';
       document.getElementById('quiz-main').style.display = 'none';
-      document.getElementById('quiz-attempt-status').textContent = `Reinício cravado no ferro. Você dispõe de 3 passagens inegociáveis para se curvar e dominar o grau 6,0. Não falhe pela segunda trilogia.`;
+      document.getElementById('quiz-attempt-status').textContent = `Reinício cravado. Deténs os singelos ${maxQuizAttempts} giros do avaliador para transpor a métrica 6,0. Não procrastine nesta jornada.`;
       document.getElementById('quiz-intro').querySelector('.botao-primario').style.display = 'block';
       updateQuizCard(); initializeLessonState(); updateGeneralProgress();
       showDashboard(new Event('click'));
